@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Attendance Management</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/uniform.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="css/loader.css" />
+
+</head>
+<body onload="onLoadPopulate();" >
+
+<!--Header-part-->
+<div id="header">
+  <!-- <h1><a href="dashboard.html">Matrix Admin</a></h1> -->
+</div>
+<!--close-Header-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Admin</span></a>
+      
+    </li>
+    
+    <li class=""><a title="" href="/"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+  </ul>
+</div>
+
+
+<!--sidebar-menu-->
+
+<div id="sidebar"> 
+<a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
+  <ul id="sideMenuBar">
+    <li><a href="/dashboard"><i class="icon icon-dashboard"></i> <span>Dashboard</span></a> </li>
+  </ul>
+  
+</div>
+<!-- Side Menu Bar End -->
+
+<div id="content">
+  <div id="content-header">
+    <!--<div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+     <h1>Students</h1> -->
+  </div>
+  <div class="container-fluid">
+    <hr>
+
+    <div class="row-fluid">
+      <div class="span12">
+
+		<div>
+        	<a class="btn btn-warning btn-large" href="#classFormModal"  id="buttonClassForm" data-toggle="modal"> + Add Class</a> 
+        </div>
+                
+         <!-- Form Starts Here -->     
+	      <div id="classFormModal" class="modal hide">
+	        <div class="modal-header">
+	          
+	          <button data-dismiss="modal" class="close" type="button">×</button>
+	          <h3>Class Form</h3>
+	        </div>
+	        <div class="modal-body">
+	          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+	            <h5>Class Room Info</h5>
+	          </div>
+	          <div class="widget-content nopadding">
+	            <form id="classForm" method="get" class="form-horizontal">
+	              
+	                <input type="hidden" name="id" value="-1" />
+	                
+	              
+	              <div class="control-group">
+	                <label class="control-label">Room Number :</label>
+	                <div class="controls">
+	                  <input type="text" name="roomNo" class="span11" placeholder="ex. 303" />
+	                </div>
+	              </div>
+	              
+	              <div class="control-group">
+	                <label class="control-label">Device Code :</label>
+	                <div class="controls">
+	                  <input type="text" name="deviceCode" class="span11" placeholder="ex. bdvjkbfjkbvk" />
+	                </div>
+	              </div>
+	              
+	            </form>
+	          </div>
+	          
+	        </div>
+	        <div class="modal-footer"> <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary" id="buttonClassForm" onclick="addClass()"> Add </a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+	      </div>
+	      <!-- form Ends Here -->
+        
+                
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Class Room table</h5>
+            <div id="" align="right">
+				  <input type="text" id="search" style="width: 50%" placeholder="Search here..." oninput="filter('search', 'classTable')"/>
+			</div>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered" id="classTable"><!-- data-table -->
+              <thead>
+                <tr>
+                  <th>Sr no.</th>
+                  <th>Room Number</th>
+                  <th>Device Code</th>
+                  <th>Operation</th>
+                </tr>
+              </thead>
+              <tbody id="classes">
+                <!-- 
+                <tr class="gradeX">
+                  <td>1</td>
+                  <td>1</td>
+                  <td>Dharmik Jayesh Joshi</td>
+                  <td class="center">Comps</td>
+                  <td class="center">(M)</td>
+                  <td class="center">IN</td>
+                  <td class="center">
+                    <a class="btn btn-success btn-small" href="">
+                      Expand
+                    </a> 
+                  </td>
+                </tr>
+                <tr class="gradeX">
+                  <td>2</td>
+                  <td>2</td>
+                  <td>Shreeya Sharma</td>
+                  <td class="center">Comps</td>
+                  <td class="center">(F)</td>
+                  <td class="center">IN</td>
+                  <td class="center">
+                    <a class="btn btn-success btn-small" href="">
+                      Expand
+                    </a> 
+                  </td>
+                </tr>
+                <tr class="gradeX">
+                  <td>3</td>
+                  <td>3</td>
+                  <td>Dhruv Pualsa</td>
+                  <td class="center">IT</td>
+                  <td class="center">(M)</td>
+                  <td class="center">OUT</td>
+                  <td class="center">
+                    <a class="btn btn-success btn-small" href="">
+                      Expand
+                    </a> 
+                  </td>
+                </tr>
+                </tbody>
+                 -->
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12">  </div>
+</div>
+
+<input type="hidden" th:value="${departmentId}" id="dId">
+
+
+<script src="PageFunctionality/classes.js"></script>
+<script src="PageFunctionality/sideMenuBar.js"></script>
+<script src="PageFunctionality/filter.js"></script>
+<script src="PageFunctionality/loader.js"></script>
+
+
+<!--end-Footer-part-->
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/jquery.dataTables.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.tables.js"></script>
+</body>
+</html>
