@@ -1,10 +1,13 @@
 package com.studentattendancesystem.model.fronend;
 
+import com.studentattendancesystem.model.LogIn;
+
 public class FacultyDepartmentDetails {
 
 	private Long id;
 	private String name;
 	private String rfid;
+	private LogIn login;
 	
 	public Long getId() {
 		return id;
@@ -23,6 +26,12 @@ public class FacultyDepartmentDetails {
 	}
 	public void setRfid(String rfid) {
 		this.rfid = rfid;
+	}
+	public LogIn getLogin() {
+		return login;
+	}
+	public void setLogin(LogIn login) {
+		this.login = login;
 	}
 	
 	

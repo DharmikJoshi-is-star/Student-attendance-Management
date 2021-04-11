@@ -26,6 +26,12 @@ public class DepartmentController {
 		return "department";
 	}  
 	
+	@RequestMapping("/createDepartment")
+	public String createDepartment(Model model) {
+		
+		return "CreateDepartment";
+	}
+	
 	@RequestMapping("/departmentDetails")
 	public String showDepartmentDetails(
 				@RequestParam("dId") Long dId, Model model

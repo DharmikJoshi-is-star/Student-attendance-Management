@@ -7,6 +7,9 @@ public class DepartmentFrontEndModel {
 	private Integer facultyCount;
 	private Integer subjectCount;
 	private Integer studentCount;
+	private Integer nfcCount;
+	private Integer classCount;
+	
 	
 	private String currentLecture;
 	private Integer studentsPresentInLecture;
@@ -87,6 +90,18 @@ public class DepartmentFrontEndModel {
 	}
 	public void setFacultyLogTime(String facultyLogTime) {
 		this.facultyLogTime = facultyLogTime;
+	}
+	public Integer getNfcCount() {
+		return nfcCount;
+	}
+	public void setNfcCount(Integer nfcCount) {
+		this.nfcCount = nfcCount;
+	}
+	public Integer getClassCount() {
+		return classCount;
+	}
+	public void setClassCount(Integer classCount) {
+		this.classCount = classCount;
 	}
 	
 	

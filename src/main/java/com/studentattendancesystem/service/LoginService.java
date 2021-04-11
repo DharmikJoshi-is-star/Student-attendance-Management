@@ -18,11 +18,14 @@ public class LoginService {
 		Faculty faculty =  loginRepository.verifyLoginCredentials(login.getUsername(), login.getPassword());
 		
 		if(faculty==null)
-			return 0l;
+			return -1l;
 		
 		return faculty.getId();
 	}
 
+	public LogIn saveLogin(LogIn login) {
+		return loginRepository.save(login);
+	}
 	
 	
 }

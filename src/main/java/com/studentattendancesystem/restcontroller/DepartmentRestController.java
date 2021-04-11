@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,8 +34,11 @@ public class DepartmentRestController {
 	private DepartmentService departmentService;
 	
 	@PostMapping("/addDepartment")
-	public ResponseEntity<Department> saveDepartment(@RequestBody Department department) {
-		department = departmentService.saveDepartment(department);
+	public ResponseEntity<Department> saveDepartment(@RequestBody Department department, HttpSession session) {
+		Long adminId = (Long)session.getAttribute("adminId");
+		if(adminId==null)
+			return null;
+		department = departmentService.saveDepartment(department, adminId);
 		return ResponseEntity.ok().body(department);
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.studentattendancesystem.enums.DaysMappedWithEnumDAY;
+import com.studentattendancesystem.model.Admin;
 import com.studentattendancesystem.model.Department;
 import com.studentattendancesystem.model.Faculty;
 import com.studentattendancesystem.model.Lecture;
@@ -24,16 +25,44 @@ import com.studentattendancesystem.repository.DepartmentRespository;
 public class DepartmentService {
 
 	@Autowired
-	DepartmentRespository departmentRespository;
+	private DepartmentRespository departmentRespository;
 	
 	@Autowired
-	SubjectService subjectService;
+	private AdminService adminService;
+	
+	@Autowired
+	private SubjectService subjectService;
 
 	@Autowired
-	LectureService lectureService;
+	private LectureService lectureService;
 	
+	@Autowired
+	private RFIDTokenService rfidTokenService;
+	
+	@Autowired
+	private ClassService classService;
+
 	public Department saveDepartment(Department department) {
-		return departmentRespository.save(department);
+		
+		department = departmentRespository.save(department);
+	
+		return department;
+	}
+
+	
+	public Department saveDepartment(Department department, Long adminId) {
+		
+		Admin admin = adminService.getAdminById(adminId);
+		if(admin==null)
+			return null;
+		
+		department = departmentRespository.save(department);
+		
+		admin.setDepartment(department);
+		
+		adminService.saveAdmin(admin);
+		
+		return department;
 	}
 
 	public List<Department> getAllDepartments() {
@@ -96,6 +125,11 @@ public class DepartmentService {
 		dfem.setStudentCount( department.getStudents().size() );
 		dfem.setFacultyCount( department.getFaculties().size() );
 		dfem.setSubjectCount( department.getSubjects().size() );
+		
+		dfem.setNfcCount( rfidTokenService.getAllTokens(dId).size());
+		
+		dfem.setClassCount( classService.getAllClasses(dId).size());
+		
 		if(department.getTodaysCompletedLectureCount()==0) {
 			dfem.setCurrentLecture( null );
 		}else {
@@ -167,6 +201,9 @@ public class DepartmentService {
 			f.setId(faculty.getId());
 			f.setName(faculty.getName());
 			f.setRfid(faculty.getRfidToken().getToken_id());
+			if(faculty.getLogin()!=null)
+				faculty.getLogin().setFaculty(null);
+			f.setLogin( faculty.getLogin() );
 			fdd.add(f);
 		}
 		return fdd;

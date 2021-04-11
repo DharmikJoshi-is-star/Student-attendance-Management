@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.studentattendancesystem.model.Department;
 import com.studentattendancesystem.model.Faculty;
 import com.studentattendancesystem.model.Lecture;
+import com.studentattendancesystem.model.LogIn;
 import com.studentattendancesystem.model.RFIDToken;
 import com.studentattendancesystem.model.fronend.FacultyDepartmentDetails;
 import com.studentattendancesystem.repository.FacultyRepository;
@@ -25,7 +26,7 @@ public class FacultyService {
 	private RFIDTokenService rfidTokenService;
 	
 	@Autowired
-	private SubjectService subjectService;
+	private LoginService loginService;
 	
 	@Autowired
 	private LectureService lectureService;
@@ -149,6 +150,31 @@ public class FacultyService {
 		faculty.setRfidToken(null);
 		
 		return faculty;
+	}
+
+	public Boolean saveCredentials(Long fId, LogIn login) {
+		
+		if(facultyRepository.existsById(fId)) {
+			Faculty faculty = facultyRepository.getOne(fId);
+			
+			LogIn facultyLogin = faculty.getLogin();
+			
+			if(facultyLogin==null) {
+				login.setFaculty(faculty);
+				login = loginService.saveLogin(login);
+				faculty.setLogin(login);
+				faculty = saveFaculty(faculty);
+			}else {
+				
+				facultyLogin.setUsername( login.getUsername() );
+
+				facultyLogin.setPassword( login.getPassword() );
+			}
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 }

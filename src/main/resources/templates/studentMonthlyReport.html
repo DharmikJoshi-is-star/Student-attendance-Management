@@ -12,15 +12,17 @@
 <link rel="stylesheet" href="css/matrix-media.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-
 <link rel="stylesheet" href="css/loader.css" />
 
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+
 </head>
-<body onload="onLoadPopulate(); onLoadPopulateSideMenuBar()">
+<body onload="onLoadPopulate();">
 
 <!--Header-part-->
-<div id="header">
-  <!-- <h1><a href="dashboard.html">Matrix Admin</a></h1> -->
+<div >
+  <h1 id="header" style="background-image: url('img/logo.png'); background-repeat: no-repeat"><a href="departmentDashboard" ></a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -41,9 +43,15 @@
 <div id="sidebar"> 
 <a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
   <ul id="sideMenuBar">
-    <li><a href="/dashboard"><i class="icon icon-dashboard"></i> <span>Dashboard</span></a> </li>
+    <li><a href="departmentDashboard"><i class="icon icon-dashboard"></i> <span>Dashboard</span></a> </li>
+    <li><a href="departmentClasses"><i class="icon icon-group"></i> <span>Class Room's</span></a> </li>
+    <li><a href="departmentNFCS"><i class="icon icon-bookmark"></i> <span>NFC Tokens</span></a> </li>
+    <li><a href="departmentStudents"><i class="icon icon-user"></i> <span>Student</span></a> </li>
+    <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
+    <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
+    <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ 
   </ul>
-  
 </div>
 <!-- Side Menu Bar End -->
 
@@ -51,12 +59,33 @@
   <div id="content-header">
    <!--  <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
      <h1></h1>-->
+     
+      <div class="row-fluid container-fluid">
+ 
+
+		 <div class="widget-box">
+		 
+		 	<div class="widget-content" style="height: 350px; width: 100%;">
+		 		
+		 		<div class="span6">
+	              	<div id="monthlyAverage" style="height: 300px; width: 100%;"></div>
+	            </div>
+	            <div class="span6">
+	              	<div id="comaprisonChart" style="height: 300px; width: 100%;"></div>
+	            </div>
+	           
+		 	</div>
+		 </div>
+		  	
+	</div>
+     
   </div>
   <div class="container-fluid">
 
     <div class="row-fluid">
       <div class="span12">
       
+           
 		<div align="right">
 	 			<button class="btn btn-meduim btn-warning" style="border-radius: 25rem" onclick="saveTable('studentMonthlyReport')" >
 					<i class="icon-download-alt"> </i> Generate Report
@@ -116,9 +145,10 @@
 </div>
 
 <script src="PageFunctionality/studentMonthlyReport.js"></script> 
-<script src="PageFunctionality/sideMenuBar.js"></script>
 <script src="PageFunctionality/loader.js"></script>
 <script src="PageFunctionality/filter.js"></script>
+<script src="chart/barchart.js"></script>
+
 
 
 <!-- to convert Table to PDF -->

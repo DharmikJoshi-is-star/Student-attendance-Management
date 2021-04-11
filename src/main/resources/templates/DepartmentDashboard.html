@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Attendance Management</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="css/loader.css" />
+
+</head>
+<body onload="onLoadPopulate()">
+
+<!--Header-part-->
+<div >
+  <h1 id="header" style="background-image: url('img/logo.png'); background-repeat: no-repeat"><a href="departmentDashboard" ></a></h1>
+</div>
+<!--close-Header-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Admin</span></a>
+      
+    </li>
+    
+    <li class=""><a title="" href="/"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+  </ul>
+</div>
+
+
+<!--sidebar-menu-->
+
+<div id="sidebar"> 
+<a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
+  <ul id="sideMenuBar">
+    <li><a href="departmentDashboard"><i class="icon icon-dashboard"></i> <span>Dashboard</span></a> </li>
+    <li><a href="departmentClasses"><i class="icon icon-group"></i> <span>Class Room's</span></a> </li>
+    <li><a href="departmentNFCS"><i class="icon icon-bookmark"></i> <span>NFC Tokens</span></a> </li>
+    <li><a href="departmentStudents"><i class="icon icon-user"></i> <span>Student</span></a> </li>
+    <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
+    <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
+    <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ 
+  </ul>
+  
+</div>
+<!-- Side Menu Bar End -->
+
+<div id="content">
+  <div id="content-header">
+   <!--  <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Addons pages</a> <a href="#" class="current">invoice</a> </div>
+    -->
+    <!-- <h1>Department Details</h1> <hr>-->
+    
+     <div class="row-fluid container-fluid">
+ 
+	 <div class="widget-box">
+	 
+	  <div class="widget-title"> <span class="icon"> <i class="icon-dashboard"></i> </span>
+            <h5 id="deptName">Computer Engineering</h5>
+          </div>
+	 
+	 	<div class="widget-content" style="height: 200px; width: 100%;">
+	 		
+	 		<div class="span6">
+              	
+              		  <div class="widget-box widget-plain">
+					      <div class="center">
+					        <ul class="stat-boxes2">
+					          <li>
+					            <div class="left peity_bar_neutral"><span><i style="font-size: 30px" class="icon icon-book"></i>
+					              </span>  </div>
+					            <div class="right"> <strong id="subjectCount">15598</strong> Subjects </div>
+					          </li>
+					          <li>
+					            <div class="left peity_line_neutral"><span><i style="font-size: 30px" class="icon icon-group"></i>
+					             
+					              </span></div>
+					            <div class="right"> <strong id="studentCount">150</strong> Students </div>
+					          </li>
+					          <li>
+					            <div class="left peity_bar_bad"><span><i style="font-size: 30px" class="icon icon-briefcase"></i>
+					              
+					              </span></div>
+					            <div class="right"> <strong id="facultyCount">4560</strong> Faculties </div>
+					          </li>
+					          <li>
+					            <div class="left peity_line_good"><span><i style="font-size: 30px" class="icon icon-tags"></i>
+					              
+					              </span></div>
+					            <div class="right"> <strong id="nfcCount">5672</strong> NFC Count </div>
+					          </li>
+					          <li>
+					            <div class="left peity_bar_good"><span><i style="font-size: 30px" class="icon icon-key"></i></span></div>
+					            <div class="right"> <strong id="classCount">2560</strong> Class Room's</div>
+					          </li>
+					        </ul>
+					      </div>
+					    </div>
+              	
+              	
+            </div>
+            <div class="span6">
+              	
+              		
+                <table class="table table-bordered table-invoice">
+                  <tbody>
+                    <tr>
+                    <tr>
+                      <td class="width30">Current Lecture: </td>
+                      <td class="width70"><strong id="currentLecture">SPA</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Students Present In Lecture:</td>
+                      <td><strong id="studentsPresentInLecture">50</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="width30">Class number:</td>
+                        <td class="width70"><strong id="lectureInClass">303</strong> </td>
+                    </tr>
+                  
+                 </tbody>
+                  
+                </table>
+ 
+              	
+            </div>
+            
+	 	</div>
+	 	
+	 </div>
+	 
+	 
+	  	
+	</div>
+    
+</div>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+      
+      
+    
+ 
+      
+        <div class="widget-box">
+        <!--   <div class="widget-title"> <span class="icon"> <i class="icon-book"></i> </span>
+            <h5 id="deptName">Computer Engineering</h5>
+          </div> -->
+          <div class="widget-content">
+            <!-- 
+            <div class="row-fluid">
+              <div class="span6">
+                
+                <table class="">
+                  <tbody>
+                    <tr>
+                      <td><h4 id="name">Computer Engineering</h4></td>
+                    </tr>
+                    <tr>
+                      <td>Number of Students: <i id="studentCount">100</i></td>
+                    </tr>
+                    <tr>
+                      <td>Subjects: <i id="subjectCount">5</i></td>
+                    </tr>
+                    <tr>
+                      <td>Faculty: <i id="facultyCount">5</i></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="span6">
+                <table class="table table-bordered table-invoice">
+                  <tbody>
+                    <tr>
+                    <tr>
+                      <td class="width30">Current Lecture: </td>
+                      <td class="width70"><strong id="currentLecture">SPA</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Students Present In Lecture:</td>
+                      <td><strong id="studentsPresentInLecture">50</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="width30">Class number:</td>
+                        <td class="width70"><strong id="lectureInClass">303</strong> </td>
+                    </tr>
+                  
+                 </tbody>
+                  
+                </table>
+              </div>
+            </div>
+            </div>
+            <hr>
+            -->
+            <div class="row-fluid">
+              <div class="span12">
+                <div>
+                  <a class="btn btn-warning btn-medium" id="subjectModal" href="#subjectFormModal" data-toggle="modal"> + Add Subject</a> 
+                </div>
+                
+            
+             <!-- <a class="btn btn-warning btn-medium" href="#departmentForm" data-toggle="modal" > + Add Department </a>  -->
+                
+       <!-- Form Starts Here -->     
+      <div id="subjectFormModal" class="modal hide">
+        <div class="modal-header">
+          
+          <button data-dismiss="modal" class="close" type="button">×</button>
+          <h3>Subject Form</h3>
+          
+        </div>
+        
+        <div class="modal-body">
+          <div class="widget-title"> 
+          	<span class="icon"> 
+          		<i class="icon-align-justify"></i> 
+          	</span>
+            <h5>Subject-info</h5>
+          </div>
+          <div class="widget-content nopadding">  
+            <form action="#" id="subjectForm" method="get" class="form-horizontal">
+            <input name="id" class="span11" type="hidden" value="-1"/>
+              <div class="control-group">
+                <label class="control-label">Name :</label>
+                <div class="controls">
+                  <input type="text" name="name" class="span11" placeholder="ex. SPA" />
+                </div>
+              </div>
+              
+            </form>
+          </div>
+          
+        </div>
+        <div class="modal-footer"> 
+        	<a data-dismiss="modal" class="btn btn-primary" onclick="addSubject()"> Add </a> 
+        	<a data-dismiss="modal" class="btn" href="#">Cancel</a> 
+        </div>
+      </div>
+      <!-- form Ends Here -->
+                
+                <br>
+                <table class="table table-bordered table-invoice-full">
+                  <thead>
+                    <tr>
+                      <th class="head0">Sr no.</th>
+                      <th class="head0">Subject name</th>
+                      <th class="head0">Number of Lectures</th>
+                      <th class="head0">Operations</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody id="subject">
+                  </tbody>
+                </table>
+ 
+                <hr>
+
+                <div>
+                  <a class="btn btn-warning btn-medium" id="buttonFacultyForm" href="#facultyFormModal" data-toggle="modal" > + Add Faculty</a> 
+                </div>
+                <br>
+ 
+             <!-- <a  class="btn btn-warning btn-medium" href="#departmentForm" data-toggle="modal" > + Add Department </a>  -->
+       
+       
+         <div>
+           <a id="buttonCredentialsForm" href="#credentialsFormModal" data-toggle="modal" type="hidden"></a> 
+         </div>
+       
+        <div id="credentialsFormModal" class="modal hide">
+        <div class="modal-header">
+          
+          <button data-dismiss="modal" class="close" type="button">×</button>
+          <h3>Credentials Form</h3>
+        </div>
+        <div class="modal-body">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Credentials-info</h5>
+          </div>
+          <div class="widget-content nopadding">
+          
+            <form action="javascript:void(0);" id="credentialForm" method="get" class="form-horizontal">
+            
+            <input type="hidden" name="facultyId" class="span11" value="-1"/>
+            
+              <div class="control-group">
+                <label class="control-label">Username: </label>
+                <div class="controls">
+                  <input type="text" name="username" class="span11" />
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label">Password :</label>
+                <div class="controls">
+                  <input type="text" name="password" class="span11" />
+                </div>
+              </div>
+              
+              
+            </form>
+            
+          </div>
+          
+        </div>
+        <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" onclick="saveFacultyCredential()"> Save </a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+      </div>
+      <!-- form Ends Here -->
+                
+                
+       <!-- Form Starts Here -->     
+     	
+     
+      <div id="facultyFormModal" class="modal hide">
+        <div class="modal-header">
+          
+          <button data-dismiss="modal" class="close" type="button">×</button>
+          <h3>Faculty Form</h3>
+        </div>
+        <div class="modal-body">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Faculty-info</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form action="#" id="facultyForm" method="get" class="form-horizontal">
+              
+                <input type="hidden" name="id" class="span11" value="-1" />
+              
+              <div class="control-group">
+                <label class="control-label">Name :</label>
+                <div class="controls">
+                  <input type="text" name="name" class="span11" placeholder="ex. SPA" />
+                </div>
+              </div>
+              
+              <div class="control-group">
+              	 <label class="control-label">Assigned Token :</label>
+              	 <div class="controls">
+              	 	<label class="control-label" id="assignedToken"></label>
+              	 </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label">RFID Token :</label>
+                <div class="controls">
+                  
+                  
+                  
+                  <select name="rfid" id="rfids">
+                  </select>
+                  
+                  
+                  <!-- <input type="text" name="rfid" class="span11" placeholder="ex. bdvjkbfjkbvk" /> -->
+                </div>
+              </div>
+              
+            </form>
+          </div>
+          
+        </div>
+        <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" onclick="addFaculty()"> Add </a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+      </div>
+      <!-- form Ends Here -->
+                
+
+                <table class="table table-bordered table-invoice-full">
+                  <thead>
+                    <tr>
+                      <th class="head0">Sr no.</th>
+                      <th class="head0">Faculty name</th>
+                      <th class="head0">RFID Code</th>
+                       <th class="head0">Credentials</th>
+                      <th class="head0">Operations</th>
+                    </tr>
+                  </thead>
+                  <tbody id="faculty">
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12">  </div>
+</div>
+
+<input type="hidden" th:value="${departmentId}" id="dId">
+
+<!-- <script src="PageFunctionality/departmentDetails.js"></script> 
+ -->
+<script src="PageFunctionality/addFaculty.js"></script> 
+<script src="PageFunctionality/addSubject.js"></script> 
+<!-- <script src="PageFunctionality/sideMenuBar.js"></script> -->
+<script src="PageFunctionality/nonAssignedRFID.js"></script>
+<script src="PageFunctionality/loader.js"></script>
+
+
+<script src="javascripts/DepartmentDashboard.js"></script> 
+
+
+
+
+<!--end-Footer-part--> 
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/matrix.js"></script>
+</body>
+</html>

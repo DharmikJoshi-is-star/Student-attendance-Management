@@ -1,5 +1,7 @@
 package com.studentattendancesystem.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,4 +15,18 @@ public class RFIDController {
 		model.addAttribute("departmentId",dId);
 		return "rfid";
 	}  
+	
+	@RequestMapping("/departmentNFCS")
+	public String showRFID(HttpSession session, Model model) {
+		
+		Long departmentId = (Long) session.getAttribute("departmentId");
+		
+		if(departmentId!=null) {
+			model.addAttribute("departmentId", departmentId);
+			return "DepartmentNFCS";
+		}
+		
+		return "redirect:/error";
+	}  
+	
 }

@@ -1,6 +1,7 @@
 package com.studentattendancesystem.restcontroller;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -171,6 +172,16 @@ public class LectureAttendanceRestController {
 		return lectureAttendanceService.getAverageAttendanceOfStudentsPerMonth(dId, month, year);
 	}
 	
+	@GetMapping("/testChart")
+	public Map<String, String> testCghart(){
+		Map<String, String> testChart = new HashMap<>();
+		testChart.put("MOnth1", "10");
+		testChart.put("MOnth1", "10");
+		testChart.put("MOnth1", "10");
+		testChart.put("MOnth1", "10");
+		
+		return testChart;
+	}
 	
 //	//return the mapped list of subject and keys as number of lecture have take in class 
 //	@GetMapping("/allSubjectsTotalLectureCount")

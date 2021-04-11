@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.studentattendancesystem.model.Faculty;
+import com.studentattendancesystem.model.LogIn;
 import com.studentattendancesystem.model.fronend.FacultyDepartmentDetails;
 import com.studentattendancesystem.service.FacultyService;
 
@@ -36,6 +38,12 @@ public class FacultyRestController {
 		response.put("Value deleted", facultyService.deleteFacultyWithId(fId));
 		return ResponseEntity.ok().body(response);
 	}
+	
+	@PostMapping("/saveCredentials/{fId}")
+	public Boolean saveCredentials(@PathVariable("fId") Long fId, @RequestBody LogIn login){
+		return facultyService.saveCredentials(fId, login);
+	}
+	
 	
 //	@GetMapping("/updateFaculty")
 //	public Boolean facultyConnectToRFID() {

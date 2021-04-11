@@ -20,6 +20,7 @@ function getAllStudentsMonthlyReportWithAPI(){
 		console.log("successfully fetched all data", monthlyReports);
 		if(monthlyReports){
 			populateAllMonthlyReportsInTable(monthlyReports);
+			monthlyAttendanceChart(monthlyReports);
 		}
 	})
 	.then((err)=>{

@@ -2,14 +2,14 @@ var path = "http://localhost:8080";
 
 function onLoadPopulate(){
 	
-	var fId = docuement.getElementById("fId").value;
+	var fId = document.getElementById("fId").value;
 	if(fId!=undefined){
 		getFacultyDetailsForMarkAtendance(fId);
 	}
 
 }
 
-function getFacultyDetailsForMarkAtendance(){
+function getFacultyDetailsForMarkAtendance(fId){
 	
 	fetch(path+"/lectureattendance/facultyDetailsForMarkAttendance/"+fId,{
 		method: 'GET',
@@ -44,12 +44,15 @@ function populateFacultyDetails(faculty){
 }
 
 function onMarkAttendanceClick(){
-	callMarkAttendanceAPI(15);
+	var fId = document.getElementById("fId").value;
+	if(fId!=undefined){
+	callMarkAttendanceAPI(fId);
+	}
 }
 
 function callMarkAttendanceAPI(fId){
 	
-	fetch(path+"/lectureattendance/markAttendance/15",{
+	fetch(path+"/lectureattendance/markAttendance/"+fId,{
 		method: 'GET',
 		headers: {
 			"Content-Type": "application/json",
