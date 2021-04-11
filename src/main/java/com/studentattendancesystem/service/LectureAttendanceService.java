@@ -924,5 +924,29 @@ public class LectureAttendanceService {
 		}
 		return studentAttendances;
 	}
+
+
+	public Map<String, Integer> getOneWeekAttedance(long dId) {
+		
+		Map<String, Integer> oneWeekAttedance = new HashMap<>();
+		
+		List<LectureAttendance> lectureAttendance= attendanceRepository.getLectureWithDepartmentId(dId);
+		
+		lectureAttendance.forEach( (attendance)->{
+			
+			if(attendance.getStudent().getDepartment().getId()==dId) {
+				String date = attendance.getDate().toString();
+				if(oneWeekAttedance.containsKey(date)) {
+					oneWeekAttedance.put(date, oneWeekAttedance.get(date)+1);
+				}else {
+					oneWeekAttedance.put(date, 1);
+				}
+				
+			}
+			
+		});
+		System.out.println(lectureAttendance.size());
+		return oneWeekAttedance;
+	}
 	
 }

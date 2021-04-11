@@ -13,11 +13,34 @@ function onLoadPopulate(){
 		getFacultiesDepartmentDetails(dId);
 		
 		getAllNonAssignedRFIDs(dId, "rfids");
+		
+		getOneWeekData(dId);
 	}
 	
 }
 
 
+function getOneWeekData(dId){
+
+	fetch(path+"/lectureattendance/getOneWeekAttedance/"+dId,{
+		method: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+	.then((res)=>res.json())
+	.then((oneWeekData)=>{
+		console.log("successfully fetched all data", oneWeekData);
+		if(oneWeekData!=undefined){
+			populateOneWeekChart(oneWeekData);
+		}
+	})
+	.then((err)=>{
+		//console.log(err);
+		return;
+	});
+	
+}
 
 function getDepartmentDetails(dId){
 	

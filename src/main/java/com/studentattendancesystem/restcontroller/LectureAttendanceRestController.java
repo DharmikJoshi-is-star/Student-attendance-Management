@@ -183,6 +183,11 @@ public class LectureAttendanceRestController {
 		return testChart;
 	}
 	
+	@GetMapping("/getOneWeekAttedance/{dId}")
+	public Map<String, Integer> getOneWeekAttedance(@PathVariable("dId") Long dId){
+		return lectureAttendanceService.getOneWeekAttedance(dId);
+	}
+	
 //	//return the mapped list of subject and keys as number of lecture have take in class 
 //	@GetMapping("/allSubjectsTotalLectureCount")
 //	public Map<Subject, Integer> allSubjectsTotalLectureCount(){

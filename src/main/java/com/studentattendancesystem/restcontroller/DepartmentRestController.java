@@ -81,4 +81,6 @@ public class DepartmentRestController {
 		return departmentService.getLecturesTimeTable(dId);
 	}
 	
+	
+	
 }

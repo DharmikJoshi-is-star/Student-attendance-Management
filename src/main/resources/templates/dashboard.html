@@ -17,12 +17,13 @@
 
 
 </head>
-<body onload="populateChart();">
+<body onload="populateChart(); populateAreaChart();">
 
 <!-- 
 <!--Header-part-->
 <div id="header">
  <!--  <h2><a href="/dashboard">AM App</a></h2> -->
+ 
 </div>
 <!--close-Header-part--> 
  
@@ -56,7 +57,7 @@
   <div id="content-header">
     <!--  <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
      -->
- 
+ 	 <div id="areaChartContainer" style="height: 300px; width: 100%;"></div>
   </div>
  
  <div class="row-fluid container-fluid">
@@ -198,6 +199,7 @@
 <script src="PageFunctionality/loader.js"></script>
 
 <script src="chart/barchart.js"></script>
+<script src="chart/areachart.js"></script>
 
 <!--end-Footer-part-->
 <script src="js/jquery.min.js"></script> 
