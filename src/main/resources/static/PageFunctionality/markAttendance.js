@@ -52,6 +52,11 @@ function onMarkAttendanceClick(){
 
 function callMarkAttendanceAPI(fId){
 	
+	var tableBody = document.getElementById("attendance");
+	
+	while(tableBody.hasChildNodes)
+		tableBody.remove();
+	
 	fetch(path+"/lectureattendance/markAttendance/"+fId,{
 		method: 'GET',
 		headers: {

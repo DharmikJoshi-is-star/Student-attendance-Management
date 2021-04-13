@@ -12,10 +12,8 @@
 <link rel="stylesheet" href="css/matrix-media.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
 <link rel="stylesheet" href="css/loader.css" />
-
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 
 </head>
 <body onload="onLoadPopulate();">
@@ -25,7 +23,6 @@
   <h1 id="header" style="background-image: url('img/logo.png'); background-repeat: no-repeat"><a href="departmentDashboard" ></a></h1>
 </div>
 <!--close-Header-part--> 
-
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
   <ul class="nav">
@@ -52,112 +49,107 @@
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
  
   </ul>
+  
 </div>
 <!-- Side Menu Bar End -->
 
+
 <div id="content">
   <div id="content-header">
-   <!--  <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
-     <h1></h1>-->
-     
-      <div class="row-fluid container-fluid">
- 
-
-		 <div class="widget-box">
-		 
-		 	<div class="widget-content" style="height: 350px; width: 100%;">
-		 		
-		 		<div class="span6">
-	              	<div id="monthlyAverage" style="height: 300px; width: 100%;"></div>
-	            </div>
-	            <div class="span6">
-	              	<div id="comaprisonChart" style="height: 300px; width: 100%;"></div>
-	            </div>
-	           
-		 	</div>
-		 </div>
-		  	
-	</div>
-     
+    <!-- <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+    <h1></h1> -->
   </div>
   <div class="container-fluid">
 
     <div class="row-fluid">
       <div class="span12">
-      
-           
+
+
 		<div align="right">
-	 			<button class="btn btn-meduim btn-warning" style="border-radius: 25rem" onclick="saveTable('studentMonthlyReport')" >
-					<i class="icon-download-alt"> </i> Generate Report
+  				<button class="btn btn-meduim btn-warning" style="border-radius: 25rem" onclick="saveTable('subjectDetailedReport')" >
+				<i class="icon-download-alt"> </i> Generate Report
 				</button>
 		</div>
 
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Student Monthly Attendance Report</h5>
-            <div id="" align="right">
-				  <input type="text" id="search" style="width: 50%" placeholder="Search here..." oninput="filter('search', 'studentMonthlyReport')"/>
+            <h5>Details Attendance of SPA</h5>
+            
+           	<div id="" align="right">
+			  <input type="text" id="search" style="width: 50%" placeholder="Search here..." oninput="filter('search', 'subjectDetailedReport')"/>
 			</div>
+				
           </div>
           <div class="widget-content nopadding">
-            <table class="table table-bordered" id="studentMonthlyReport">
+            <table class="table table-bordered" id="subjectDetailedReport">
               <thead>
                 <tr>
                   <th>Sr no.</th>
-                  <th>Month</th>
-                  <th>Year</th>
-                  <th>Total Lectures Attended</th>
-                  <th>Total Lectures Taken</th>
-                  <th>Avg. Attendance</th>
+                  <th>Class No.</th>
+                  <th>Is Present?</th>
+                  <th>Attendance Taken By</th>
+                  <th>Date</th>
+                  <th>Time</th>
                 </tr>
               </thead>
-              <tbody id="monthlyReport">
+              <tbody id="subjectAttendance">
                <!--  <tr class="gradeX">
                   <td>1</td>
-                  <td>January</td>
-                  <td>2000</td>
-                  <td class="center">10</td>
-                  <td class="center">20</td>
-                  <td class="center">50%</td>
+                  <td>303</td>
+                  <td>Yes</td>
+                  <td class="center">Dr. Shinde sir</td>
+                  <td class="center">21/03/2021</td>
+                  <td class="center">01:46:47</td>
                 </tr>
                 <tr class="gradeX">
                   <td>2</td>
-                  <td>February</td>
-                  <td>2000</td>
-                  <td class="center">10</td>
-                  <td class="center">20</td>
-                  <td class="center">50%</td>
+                  <td>303</td>
+                  <td>No</td>
+                  <td class="center">Dr. Shinde sir</td>
+                  <td class="center">21/04/2021</td>
+                  <td class="center">01:46:47</td>
                 </tr>
                  -->
                 </tbody>
                 
             </table>
+            	
           </div>
+          <div class="pagination alternate" align="center">
+		          <ul>
+			          <li><button id="prev" onclick="prevPage()"> << prev</button></li>
+			          
+			          <li><button id="next" onclick="nextPage()">next >></button></li>
+		          </ul>
+	      </div>
         </div>
       </div>
     </div>
+  
 
   </div>
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-
+  <div id="footer" class="span12">  </div>
 </div>
 
-<!-- <script src="PageFunctionality/studentMonthlyReport.js"></script>  -->
+<script src="javascripts/StudentDetailReport.js"></script>
 <script src="PageFunctionality/loader.js"></script>
 <script src="PageFunctionality/filter.js"></script>
-<script src="chart/barchart.js"></script>
-<script src="javascripts/StudentMonthlyReport.js"></script> 
 
-
+<input type="hidden" th:value="${pageSize}" id="pageSize">
+<input type="hidden" th:value="${currentPage}" id="currentPage">
 <input type="hidden" th:value="${studentId}" id="sId">
+<input type="hidden" th:value="${subjectId}" id="subId">
 
 <!-- to convert Table to PDF -->
 <script src="PageFunctionality/attendanceToPdf.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <!-- to convert Table to PDF -->
+
+
 
 <!--end-Footer-part-->
 <script src="js/jquery.min.js"></script> 

@@ -32,7 +32,7 @@ public class ClassController {
 			return "DepartmentClasses";
 		}
 		
-		return "redirect:/error";
+		return "redirect:/errorPage";
 	}
 	
 	

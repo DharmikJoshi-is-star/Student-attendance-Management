@@ -2,13 +2,17 @@ var path = "http://localhost:8080";
 
 function onLoadPopulate(){
 	
-	getAllDepartmentSubjectWithAPI();
+	var dId = document.getElementById("departmentId").value;
+	
+	if(dId!=undefined)
+	
+	getAllDepartmentSubjectWithAPI(dId);
 }
 
 
-function getAllDepartmentSubjectWithAPI(){
+function getAllDepartmentSubjectWithAPI(dId){
 	
-	fetch(path+"/department/getAllDepartmentsSubjects/3",{
+	fetch(path+"/department/getAllDepartmentsSubjects/"+dId,{
 		method: 'GET',
 		headers: {
 			"Content-Type": "application/json",

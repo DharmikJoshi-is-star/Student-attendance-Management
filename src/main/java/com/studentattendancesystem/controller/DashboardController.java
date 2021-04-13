@@ -24,7 +24,7 @@ public class DashboardController {
 			return "DepartmentDashboard";
 		}
 		
-		return "redirect:/error";
+		return "redirect:/errorPage";
 	}
 	
 }

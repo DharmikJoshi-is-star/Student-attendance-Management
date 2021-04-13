@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.studentattendancesystem.enums.DaysMappedWithEnumDAY;
@@ -579,6 +583,8 @@ public class LectureAttendanceService {
 		
 		return studentDetailedAttendanceOfSubject;
 	}
+	
+	
 
 	private List<LectureAttendance> getStudentDetailedAttendanceOfSubjectFromDB(Long sId, Long subId) {
 		return attendanceRepository.getStudentDetailedAttendanceOfSubject(sId, subId);
@@ -947,6 +953,43 @@ public class LectureAttendanceService {
 		});
 		System.out.println(lectureAttendance.size());
 		return oneWeekAttedance;
+	}
+
+
+	public List<StudentDetailedAttendanceOfSubject> getSubjectDetailedAttendance(Long sId, Long subId, Integer currentPage,
+			Integer pageSize) {
+		
+		List<StudentDetailedAttendanceOfSubject> attendanceList= this.getStudentDetailedAttendanceOfSubject(sId, subId);
+		
+		
+        Collections.sort(attendanceList, new Comparator<StudentDetailedAttendanceOfSubject>() {
+              public int compare(StudentDetailedAttendanceOfSubject o1, StudentDetailedAttendanceOfSubject o2) {
+                  if (o1.getDate() == null || o2.getDate() == null)
+                    return 0;     
+                  return o2.getDate().compareTo(o1.getDate());
+              }
+            });
+        
+        Collections.sort(attendanceList, new Comparator<StudentDetailedAttendanceOfSubject>() {
+            public int compare(StudentDetailedAttendanceOfSubject o1, StudentDetailedAttendanceOfSubject o2) {
+                if (o1.getTime() == null || o2.getTime() == null)
+                  return 0;     
+                return o2.getTime().compareTo(o1.getTime());
+            }
+          });
+        
+        
+        int start = pageSize * (currentPage-1);
+        int end = start + pageSize;
+        
+        
+        if(start>=attendanceList.size())
+        	return null;
+        	
+        if(end < attendanceList.size())
+        	return attendanceList.subList(start, end);
+        else
+        	return attendanceList.subList(start, attendanceList.size());
 	}
 	
 }

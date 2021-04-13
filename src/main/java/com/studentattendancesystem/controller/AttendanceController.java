@@ -19,7 +19,7 @@ public class AttendanceController {
 			return "DepartmentAttendance";
 		}
 		
-		return "redirect:/error";
+		return "redirect:/errorPage";
 	}
 	
 }

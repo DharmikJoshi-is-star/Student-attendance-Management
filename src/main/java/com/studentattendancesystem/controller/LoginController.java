@@ -34,7 +34,7 @@ public class LoginController {
 		Admin admin = adminService.getAdminById(adminId);
 	
 		if(admin==null)
-			return "redirect:/error";
+			return "redirect:/errorPage";
 		
 		
 		session.setAttribute("adminId", adminId);
@@ -53,7 +53,7 @@ public class LoginController {
 		Faculty faculty = facultyService.getFacultyWithId(facultyId);
 				
 		if(faculty==null)
-			return "redirect:/error";
+			return "redirect:/errorPage";
 		
 		
 		session.setAttribute("facultyId", facultyId);

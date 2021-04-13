@@ -90,5 +90,22 @@ public class RFIDTokenService {
 		this.rfidTokenRepository.save(rfid);
 	}
 
+	public List<RFIDToken> getAllTokens(Long dId, Integer currentPage, Integer pageSize) {
+		List<RFIDToken> tokens = getAllTokens(dId);
+		
+		int start = pageSize * (currentPage-1);
+        int end = start + pageSize;
+        
+        
+        if(start>=tokens.size())
+        	return null;
+        	
+        if(end < tokens.size())
+        	return tokens.subList(start, end);
+        else
+        	return tokens.subList(start, tokens.size());
+	
+	}
+
 	
 }

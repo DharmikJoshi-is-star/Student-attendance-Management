@@ -15,6 +15,9 @@ public class FacultyController {
 		
 		Long facultyId = (Long)session.getAttribute("facultyId");
 		
+		if(facultyId==null)
+			return "redirect:/errorPage";
+		
 		model.addAttribute("facultyId", facultyId);
 		return "markAttendance";
 	}

@@ -115,6 +115,17 @@ public class LectureAttendanceRestController {
 							@PathVariable("subId") Long  subId){
 		return lectureAttendanceService.getStudentDetailedAttendanceOfSubject(sId, subId);
 	}
+	
+	@GetMapping("/getSubjectDetailedAttendance/{sId}/{subId}/{currentPage}/{pageSize}")
+	public List<StudentDetailedAttendanceOfSubject> 
+					getSubjectDetailedAttendance(
+						@PathVariable("sId") Long sId,
+							@PathVariable("subId") Long  subId,
+								@PathVariable("currentPage") Integer currentPage,
+									@PathVariable("pageSize") Integer pageSize){
+		
+		return lectureAttendanceService.getSubjectDetailedAttendance(sId, subId, currentPage, pageSize);
+	}
 
 	@GetMapping("/getAttendnaceOfSubjectOnDate/{subId}/{date}")
 	public List<SubjectAttendanceOnDate> getAttendnaceOfSubjectOnDate(

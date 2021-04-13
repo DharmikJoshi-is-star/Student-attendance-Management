@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Attendance Management</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/uniform.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" href="css/loader.css" />
+
+</head>
+<body onload="onLoadPopulate();  onLoadPopulateStudentInfo()">
+
+<!--Header-part-->
+<div >
+  <h1 id="header" style="background-image: url('img/logo.png'); background-repeat: no-repeat"><a href="departmentDashboard" ></a></h1>
+</div>
+<!--close-Header-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Admin</span></a>
+      
+    </li>
+    
+    <li class=""><a title="" href="/"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+  </ul>
+</div>
+
+
+<!--sidebar-menu-->
+
+<div id="sidebar"> 
+<a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
+  <ul id="sideMenuBar">
+    <li><a href="departmentDashboard"><i class="icon icon-dashboard"></i> <span>Dashboard</span></a> </li>
+    <li><a href="departmentClasses"><i class="icon icon-group"></i> <span>Class Room's</span></a> </li>
+    <li><a href="departmentNFCS"><i class="icon icon-bookmark"></i> <span>NFC Tokens</span></a> </li>
+    <li><a href="departmentStudents"><i class="icon icon-user"></i> <span>Student</span></a> </li>
+    <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
+    <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
+    <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ 
+  </ul>
+</div>
+<!-- Side Menu Bar End -->
+
+
+<div id="content">
+  <div id="content-header">
+    <!--<div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Addons pages</a> <a href="#" class="current">invoice</a> </div>
+     <h1></h1> -->
+  </div>
+  <div class="container-fluid"><hr>
+    <div class="row-fluid">
+      <div class="span12">
+      
+      	<div align="right">
+ 			<button class="btn btn-meduim btn-warning" style="border-radius: 25rem" onclick="saveReport()" >
+				<i class="icon-download-alt"> </i> Generate Report
+			</button>
+	    </div>
+      
+        <div class="widget-box" >
+          <div class="widget-title"> <span class="icon"> <i class="icon-briefcase"></i> </span>
+            <h5 >Student Attendance Report</h5>
+          </div>
+          <div class="widget-content" id="studentDetails">
+            <div class="row-fluid">
+              <div class="span6">
+                <table class="">
+                  <tbody>
+                    <tr>
+                      <td><h4 id="studentName">Dharmik Jayesh Joshi</h4></td>
+                    </tr>
+                    <tr>
+                      <td id="studentRollNo">Roll no: 1</td>
+                    </tr>
+                    <tr>
+                      <td id="studentGender">Gender: Male</td>
+                    </tr>
+                    <tr>
+                      <td id="studentDepartmentName">Department : Comps</td>
+                    </tr>
+                    <tr>
+                      <td id="studentTotalLecturesPresent">Total Lecture Present is: 10</td>
+                    </tr>
+                    <tr>
+                      <td id="studentAverageAttendance">Average Attendance: 78%</td>
+                    </tr>
+                    
+                    <tr>
+                      <td >
+                        <a class="btn btn-primary btn-medium" href="#studentEditFormModal" data-toggle="modal">
+							Student Personal Information
+                        </a> 
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                      <td >
+                        <a class="btn btn-primary btn-medium" onclick="goToStudentMonthlyReport()">
+                          Show Monthly Report
+                        </a> 
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                
+                
+                
+              </div>
+              <div class="span6">
+              
+              <!-- Form Starts Here -->     
+     
+      <div id="studentEditFormModal" class="modal hide">
+        <div class="modal-header">
+          
+          <button data-dismiss="modal" class="close" type="button">×</button>
+          <h3>Student Information Form</h3>
+          
+        </div>
+        <div class="modal-body">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Student-info </h5> <a href="#"> <span class="label label-info"> <i class="icon-pencil"></i> EDIT </span></a>
+          </div>
+          <div class="widget-content nopadding">
+            <form action="javascript:void(0);" id="studentInfoForm" method="get" class="form-horizontal">
+              
+              <div class="control-group">
+                <label class="control-label"> Student Age :</label>
+                <div class="controls">
+                  <input name="age" type="number" min="2" max="2" class="span11" />
+                  	
+                </div>
+              </div>
+              
+              <div class="control-group">
+                <label class="control-label">Address :</label>
+                <div class="controls">
+                  <textarea name="address" class="span11" placeholder="ex. Computer Engineering" ></textarea>
+                </div>
+              </div>
+              
+            
+              
+              <div class="control-group">
+                <label class="control-label">Guardian Contact :</label>
+                <div class="controls">
+                  <input name="contactNumber" type="number" min="10" max="10" class="span11" />
+                  	
+                </div>
+              </div>
+              
+               <div class="control-group">
+                <label class="control-label">Guardian Mail Address :</label>
+                <div class="controls">
+                  <input name="mailAddress" type="email" class="span11" />
+                  	
+                </div>
+              </div>
+              
+              
+            </form>
+          </div>
+          
+        </div>
+        <div class="modal-footer"> <a data-dismiss="modal" onclick="addStudentInfo()" class="btn btn-primary"> Save </a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+      </div>
+      <!-- form Ends Here -->
+              
+                <table class="table table-bordered table-invoice">
+                  <tbody>
+                    <tr>
+                    <tr>
+                      <td class="width30">RFID ID:</td>
+                      <td class="width70"><strong id="studentRFID">2900940E95</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Log status:</td>
+                      <td><strong id="studentCurrentStatus">IN</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="width30">Class number:</td>
+                        <td class="width70"><strong id="studentCurrentClass">303</strong> </td>
+                    </tr>
+                    <tr>
+                      <td>Log Date:</td>
+                      <td><strong id="studentCurrentLogDate">April 01, 2013</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Log Time:</td>
+                      <td><strong id="studentCurrentLogTime">April 01, 2013</strong></td>
+                    </tr>
+                    
+                    </tbody>
+                  
+                </table>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span12">
+                <table class="table table-bordered table-invoice-full">
+                  <thead>
+                    <tr>
+                      <th class="head0">Sr no.</th>
+                      <th class="head0">Subject name</th>
+                      <th class="head0">Lecture attended</th>
+                      <th class="head0">Lectures taken</th>
+                      <th class="head0">Avg. Attendance</th>
+                      <th class="head0">Detail Report</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody id="subjectAttendance">
+					<!-- 
+                    <tr>
+                      <td style="text-align:center">1</td>
+                      <td style="text-align:center">SPA</td>
+                      <td style="text-align:center">10</td>
+                      <td style="text-align:center">20</td>
+                      <td style="text-align:center"><strong>50%</strong></td>
+                      <td style="text-align:center"> 
+                        <a class="btn btn-success btn-small" href="/studentDetailedAttendanceOfSubject?sId=44&subId=4">
+                          Expand
+                        </a> 
+                      </td>
+                    
+                    </tr>
+
+                    <tr>
+                      <td style="text-align:center">2</td>
+                      <td style="text-align:center">AOA</td>
+                      <td style="text-align:center">10</td>
+                      <td style="text-align:center">20</td>
+                      <td style="text-align:center"><strong>50%</strong></td>
+                      <td style="text-align:center"> 
+                        <a class="btn btn-success btn-small" href="">
+                          Expand
+                        </a> 
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="text-align:center">3</td>
+                      <td style="text-align:center">Data Structures</td>
+                      <td style="text-align:center">10</td>
+                      <td style="text-align:center">20</td>
+                      <td style="text-align:center"><strong>50%</strong></td>
+                      <td style="text-align:center"> 
+                        <a class="btn btn-success btn-small" href="">
+                          Expand
+                        </a> 
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="text-align:center">4</td>
+                      <td style="text-align:center">Java</td>
+                      <td style="text-align:center">10</td>
+                      <td style="text-align:center">20</td>
+                      <td style="text-align:center"><strong>50%</strong></td>
+                      <td style="text-align:center"> 
+                        <a class="btn btn-success btn-small" href="">
+                          Expand
+                        </a> 
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="text-align:center">5</td>
+                      <td style="text-align:center">Python</td>
+                      <td style="text-align:center">10</td>
+                      <td style="text-align:center">20</td>
+                      <td style="text-align:center"><strong>50%</strong></td>
+                      <td style="text-align:center"> 
+                        <a class="btn btn-success btn-small" href="">
+                          Expand
+                        </a> 
+                      </td>
+                    </tr>
+					 -->
+                  </tbody>
+                </table>
+
+                <!-- 
+               
+                <div class="pull-right">
+                  <br>
+                  <a class="btn btn-primary btn-large pull-right" href="">Pay Invoice</a> 
+                </div>
+
+				-->
+				 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12">  </div>
+</div>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+<script src="javascripts/DepartmentStudentDetails.js"></script>
+<script src="PageFunctionality/addStudentInfo.js"></script>
+<script src="PageFunctionality/loader.js"></script>
+<script src="PageFunctionality/attendanceToPdf.js"></script>
+
+
+<input type="hidden" th:value="${studentId}" id="sId">
+
+<!--end-Footer-part--> 
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/matrix.js"></script>
+
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+
+</body>
+</html>

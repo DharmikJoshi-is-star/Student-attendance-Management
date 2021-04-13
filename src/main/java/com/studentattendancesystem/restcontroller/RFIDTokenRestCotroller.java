@@ -40,6 +40,13 @@ public class RFIDTokenRestCotroller {
 		return rfidTokenService.getAllTokens(dId);
 	}
 	
+	@GetMapping("/getAllTokens/{dId}/{currentPage}/{pageSize}")
+	public List<RFIDToken> getAllTokensPage(@PathVariable("dId") Long dId, @PathVariable("currentPage") Integer currentPage, @PathVariable("pageSize") Integer pageSize){
+		System.out.println("called");
+		return rfidTokenService.getAllTokens(dId, currentPage, pageSize);
+	}
+
+	
 	
 	@DeleteMapping("/delete/{rfidId}")
 	public ResponseEntity<Map<String, Boolean>> deleteRFIDTokenWithId(@PathVariable("rfidId") Long rfidId){

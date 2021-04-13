@@ -191,6 +191,13 @@
                  -->
             </table>
           </div>
+           <div class="pagination alternate" align="center">
+		          <ul>
+			          <li><button id="prev" onclick="prevPage()"> << prev</button></li>
+			          
+			          <li><button id="next" onclick="nextPage()">next >></button></li>
+		          </ul>
+	      </div>
         </div>
       </div>
     </div>
@@ -203,10 +210,11 @@
 </div>
 
 <input type="hidden" th:value="${departmentId}" id="dId">
-
+<input type="hidden" th:value="${pageSize}" id="pageSize">
+<input type="hidden" th:value="${currentPage}" id="currentPage">
 
 <!-- <script src="PageFunctionality/rfid.js"></script> -->
-<script src="PageFunctionality/sideMenuBar.js"></script>
+
 <script src="PageFunctionality/filter.js"></script>
 <script src="PageFunctionality/loader.js"></script>
 

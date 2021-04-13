@@ -2,13 +2,21 @@ var path = "http://localhost:8080";
 
 var nfcAssigned = 0;
 var nfcUnassigned = 0;
+var pageSize;
+var currentPage; 
+var dId;
 
 function onLoadPopulate(){
-	var dId = document.getElementById("dId").value;	
+	dId = document.getElementById("dId").value;	
+	pageSize = document.getElementById("pageSize").value;	
+	currentPage = document.getElementById("currentPage").value;	
 	console.log(dId);
 	if(dId!=undefined){
 		getAllRFIDs(dId);
+		
+		getAllRFIDsByPage(dId, currentPage, pageSize);
 	}
+	 
 }
 
 function addRFID(){
@@ -55,6 +63,33 @@ function postRFID(rfid){
 	
 }
 
+function getAllRFIDsByPage(dId, currentPage, pageSize){
+
+    var tableData = document.getElementById("rfids");
+	console.log(tableData.hasChildNodes());
+	tableData.innerHTML = "";
+		
+	console.log("/rfid/getAllTokens/"+dId+"/"+currentPage+"/"+pageSize);
+	
+	fetch(path+"/rfid/getAllTokens/"+dId+"/"+currentPage+"/"+pageSize,{
+		method: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+	.then((res)=>res.json())
+	.then((rfids)=>{
+		console.log("successfully fetched all data", rfids);
+		if(rfids!=undefined){
+			populateAllRFIDInTable(rfids);
+		}
+	})
+	.then((err)=>{
+		//console.log(err);
+		return;
+	});
+}
+
 function getAllRFIDs(dId){
 	fetch(path+"/rfid/getAllTokens/"+dId,{
 		method: 'GET',
@@ -66,7 +101,24 @@ function getAllRFIDs(dId){
 	.then((rfids)=>{
 		console.log("successfully fetched all data", rfids);
 		if(rfids!=undefined){
-			populateAllRFIDInTable(rfids);
+			//populateAllRFIDInTable(rfids);
+			for(var index = 0; index < rfids.length; index++){
+		
+				var rfid = rfids[index];
+			
+				if(rfid.student==null && rfid.faculty==null){
+					nfcUnassigned++;
+					
+				}else if(rfid.student!=null){
+					nfcAssigned++;
+					
+				}else if(rfid.faculty!=null){
+					nfcAssigned++;
+					
+				}
+	
+				
+			}
 		}
 	})
 	.then((err)=>{
@@ -87,7 +139,7 @@ function populateAllRFIDInTable(rfids){
 	
 	document.getElementById("nfcAssigned").innerHTML = nfcAssigned;
 	document.getElementById("nfcUnassigned").innerHTML = nfcUnassigned;
-	
+	setPrevNextButton();
 }
 
 
@@ -107,13 +159,13 @@ function createRowForRFIDTable(index, rfid){
 	var tdAssigned = document.createElement("td");
 	
 	if(rfid.student==null && rfid.faculty==null){
-		nfcUnassigned++;
+		//nfcUnassigned++;
 		tdAssigned.innerHTML = "UNASSIGNED";
 	}else if(rfid.student!=null){
-		nfcAssigned++;
+		//nfcAssigned++;
 		tdAssigned.innerHTML = "ASSIGNED TO STUDENT";
 	}else if(rfid.faculty!=null){
-		nfcAssigned++;
+		//nfcAssigned++;
 		tdAssigned.innerHTML = "ASSIGNED TO FACULTY";
 	}
 	
@@ -141,6 +193,55 @@ function createRowForRFIDTable(index, rfid){
 }
 
 
+function setPrevNextButton(){
+	
+	console.log("setPrevNextButton");
+	
+	console.log(currentPage);
+	
+	if(parseInt(currentPage)<=1){
+		console.log("prev is disabled");
+		
+		document.getElementById("prev").disabled = true ;
+		
+	}else{
+		
+		console.log("prev is active");
+		document.getElementById("prev").disabled = false ;
+		
+	}
+	
+	var tableBody = document.getElementById("rfids");
+	
+	console.log("tableBody.childNodes.length", tableBody);
+	console.log(tableBody.qu);
+	console.log(tableBody.childNodes.length);
+	console.log(parseInt(pageSize));
+	
+	
+	if(tableBody.childNodes.length < parseInt(pageSize)){
+		console.log("next is disabled");
+		document.getElementById("next").disabled = true ;
+		
+	}else{
+		console.log("next is active");
+		document.getElementById("next").disabled = false ;
+		
+	}
+	
+}
+
+function nextPage(){
+	currentPage++;
+	getAllRFIDsByPage(dId, currentPage, pageSize);
+	setPrevNextButton();
+}
+
+function prevPage(){
+	currentPage--;
+	getAllRFIDsByPage(dId, currentPage, pageSize);
+	setPrevNextButton();
+}
 
 
 

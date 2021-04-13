@@ -23,10 +23,12 @@ public class RFIDController {
 		
 		if(departmentId!=null) {
 			model.addAttribute("departmentId", departmentId);
+			model.addAttribute("currentPage", 1);
+			model.addAttribute("pageSize", 10);
 			return "DepartmentNFCS";
 		}
 		
-		return "redirect:/error";
+		return "redirect:/errorPage";
 	}  
 	
 }

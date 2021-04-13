@@ -49,6 +49,8 @@ function populateSubjectAttendanceInTable(subjectAttendance){
 			createRowSubjectAttendanceTable(index, subjectAttendance[index])
 			);
 	}
+	
+	document.getElementById("subjectDetailedReport").classList.add("data-table");
 
 }
 

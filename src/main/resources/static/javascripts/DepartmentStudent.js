@@ -103,7 +103,7 @@ function createRowForStudentTable(index, student){
 	tdDetailsExpand.classList.add("btn-success");
 	tdDetailsExpand.classList.add("btn-small");
 	tdDetailsExpand.innerHTML = "Expand";
-	tdDetailsExpand.href = "/showStudentDetails?sId="+student.id;
+	tdDetailsExpand.href = "/departmentStudentDetailsProcess?sId="+student.id;
 	tdDetails.appendChild(tdDetailsExpand);
 	
 	tr.appendChild(tdDetails);

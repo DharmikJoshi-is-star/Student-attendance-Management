@@ -19,7 +19,7 @@ public class TimeTableController {
 			return "DepartmentTimeTable";
 		}
 		
-		return "redirect:/error";
+		return "redirect:/errorPage";
 	}
 	
 }

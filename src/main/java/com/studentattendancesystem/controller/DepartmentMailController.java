@@ -20,7 +20,7 @@ public class DepartmentMailController {
 			return "DepartmentSendMail";
 		}
 		
-		return "redirect:/error";
+		return "redirect:/errorPage";
 	}
 	
 }
