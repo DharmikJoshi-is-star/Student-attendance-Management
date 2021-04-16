@@ -55,10 +55,18 @@ function postStudent(student){
 		
 		})
 		.then((response)=> response.json())
-		.then((response)=>{
-			var a = document.createElement("a");
-			a.href = path+"/showAllDepartmentStudents?dId="+dId;
-			a.click();
+		.then((studentResponse)=>{
+			if(studentResponse!=undefined || studentResponse!=null){
+				var studentData = [studentResponse];
+				populateAllStudentInTable(studentData)
+				//var a = document.createElement("a");
+				//a.href = path+"/showAllDepartmentStudents?dId="+dId;
+				//a.click();
+				success();
+			}else{
+				error();
+			}
+			
 		})
 		.then((error)=>{
 			console.log("Error: ",error);
@@ -112,6 +120,31 @@ function editStudentForm(student){
 }
 
 function deleteStudent(studentId){
+	swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this Data!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Yes, delete it!',
+		cancelButtonText: "No, cancel plx!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	
+	function(isConfirm){
+    if (isConfirm){
+		swal("Deleted!", "Your file has been deleted!", "success");
+		deleteStudentAPI(studentId);
+		return true;
+    } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+		return false;
+    }
+	});
+} 
+
+function deleteStudentAPI(studentId){
 	
 	var dId = document.getElementById("dId").value;	
 	
@@ -131,7 +164,7 @@ function deleteStudent(studentId){
 		.then((response)=> response)
 		.then((response)=>{
 			var a = document.createElement("a");
-			a.href = path+"/showAllDepartmentStudents?dId="+dId;
+			a.href = path+"/departmentStudents";
 			a.click();
 		})
 		.then((error)=>{

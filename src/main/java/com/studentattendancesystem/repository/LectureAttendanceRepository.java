@@ -50,7 +50,7 @@ public interface LectureAttendanceRepository extends JpaRepository<LectureAttend
 
 	
 	//change week 2 to 1 and set present
-	@Query(nativeQuery = true, value="SELECT * FROM lecture_attendances lectureAtt WHERE lectureAtt.date between date_sub(now(),INTERVAL 1 WEEK) and now() and lectureAtt.is_present=true")
+	@Query(nativeQuery = true, value="SELECT * FROM lecture_attendances lectureAtt WHERE lectureAtt.date between date_sub(now(),INTERVAL 2 WEEK) and now()")//and lectureAtt.is_present=true")
 	List<LectureAttendance> getLectureWithDepartmentId(Long dId);
 	//@Query(nativeQuery = true, value = "SELECT * FROM student_class_log classLog WHERE classLog.student_id is not null and classLog.class_obj_id=:classId and classLog.log_date=:date and classLog.status_in_out=:status")
 	//select id from tbname

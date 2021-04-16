@@ -51,10 +51,18 @@ function postSubject(subject){
 		
 		})
 		.then((response)=> response.json())
-		.then((response)=>{
-			var a = document.createElement("a");
-			a.href = path+"/departmentDetails?dId="+dId;
-			a.click();
+		.then((subjectResponse)=>{
+			if(subjectResponse!=undefined || subjectResponse!=null){
+				var subjectData = [subjectResponse];
+				populateSubjectTable(subjectData);
+				//var a = document.createElement("a");
+				//a.href = path+"/departmentDetails?dId="+dId;
+				//a.click();
+				success();
+			}else{
+				error();
+			}
+			
 		})
 		.then((error)=>{
 			console.log("Error: ",error);
@@ -95,6 +103,34 @@ function submitEditSubject(subject){
 
 function deleteSubject(sId){
 	
+	swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this Data!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Yes, delete it!',
+		cancelButtonText: "No, cancel plx!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	
+	function(isConfirm){
+    if (isConfirm){
+		swal("Deleted!", "Your file has been deleted!", "success");
+		deleteSubjectAPI(sId);
+		return true;
+    } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+		return false;
+    }
+	});
+	
+}
+
+
+function deleteSubjectAPI(sId){
+	
 	var dId = document.getElementById("dId").value;	
 	
 	console.log("dId=", dId);
@@ -114,7 +150,7 @@ function deleteSubject(sId){
 		.then((response)=> response)
 		.then((response)=>{
 			var a = document.createElement("a");
-			a.href = path+"/departmentDetails?dId="+dId;
+			a.href = path+"/departmentDashboard";
 			a.click();
 		})
 		.then((error)=>{

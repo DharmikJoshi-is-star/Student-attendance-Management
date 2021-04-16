@@ -50,10 +50,20 @@ function postRFID(rfid){
 		
 		})
 		.then((response)=> response.json())
-		.then((response)=>{
-			var a = document.createElement("a");
-			a.href = path+"/rfid?dId="+dId;
-			a.click();
+		.then((nfcResponse)=>{
+			if(nfcResponse!=undefined || nfcResponse!=null){
+				
+				var nfcData = [nfcResponse];
+				populateAllRFIDInTable(nfcData);
+				//var a = document.createElement("a");
+				//a.href = path+"/rfid?dId="+dId;
+				//a.click();
+				
+				success();
+			}else{
+				error();
+			}
+			
 		})
 		.then((error)=>{
 			console.log("Error: ",error);
@@ -133,7 +143,7 @@ function populateAllRFIDInTable(rfids){
 	for(var index = 0; index < rfids.length; index++){
 		
 		tableBody.appendChild( 
-			createRowForRFIDTable(index, rfids[index])
+			createRowForRFIDTable(tableBody.childNodes.length, rfids[index])
 			);
 	}
 	

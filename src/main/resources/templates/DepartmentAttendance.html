@@ -75,7 +75,7 @@
         </div>
         <div class="widget-content">
           
-          <form action="javascript:void(0);" id="filterForm" class="form-horizontal" onsubmit="onFormSubmitfindAttendanceOfSubject()">
+          <form action="javascript:void(0);" id="filterForm" class="form-horizontal">
             
             <div class="control-group">
               <label class="control-label">Select Subject</label>
@@ -103,7 +103,7 @@
             </div>
             -->
             <div class="form-actions">
-              <button type="submit" class="btn btn-info">Show Attendance</button>
+              <button onclick="showAttendance()" class="btn btn-info">Show Attendance</button>
             
              <div align="right">
    					<button class="btn btn-meduim btn-warning" style="border-radius: 25rem" onclick="saveTable('subjectAttendanceReport')">

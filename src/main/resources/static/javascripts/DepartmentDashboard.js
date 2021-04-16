@@ -201,11 +201,13 @@ function populateFacultyTable(faculties){
 	for(var index = 0; index < faculties.length; index++){
 		console.log(faculties[index]);
 		tableBody.appendChild( 
-			createRowForFacultyTable(index+1, faculties[index])
+			createRowForFacultyTable(tableBody.childNodes.length, faculties[index])
 			);
 	}
 
 }
+
+
 
 
 function createRowForFacultyTable(srno, faculty){
@@ -311,7 +313,7 @@ function populateSubjectTable(subjects){
 	for(var index = 0; index < subjects.length; index++){
 		
 		tableBody.appendChild( 
-			createRowForSubjectTable(index+1, subjects[index])
+			createRowForSubjectTable(tableBody.childNodes.length, subjects[index])
 			);
 	}
 

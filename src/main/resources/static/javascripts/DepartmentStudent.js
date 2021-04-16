@@ -48,7 +48,7 @@ function populateAllStudentInTable(students){
 	for(var index = 0; index < students.length; index++){
 		
 		tableBody.appendChild( 
-			createRowForStudentTable(index, students[index])
+			createRowForStudentTable(tableBody.childNodes.length, students[index])
 			);
 	}
 

@@ -50,7 +50,7 @@ function populateSubjectIntoList(subjects){
 }
 
 
-function onFormSubmitfindAttendanceOfSubject(){
+function showAttendance(){
 	
 	var form = document.getElementById("filterForm");
 	console.log(form);
@@ -70,6 +70,9 @@ function onFormSubmitfindAttendanceOfSubject(){
 
 
 function setAttendanceOfSubjectOnDate(subject){
+	
+	var tableHeadRow = document.getElementById("tableHeadRow");
+	tableHeadRow.innerHTML = "";
 	
 	fetch(path+"/lectureattendance/getAttendnaceOfSubjectOnDate/"+subject.id+"/"+subject.date,{
 		method: 'GET',

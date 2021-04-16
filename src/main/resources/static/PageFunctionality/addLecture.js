@@ -459,8 +459,32 @@ function saveLecture(dId, lecture, classId, departmentId, facultyId, subjectId )
 	
 }
 
-
 function deleteLecture(lectureId){
+	swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this Data!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Yes, delete it!',
+		cancelButtonText: "No, cancel plx!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	
+	function(isConfirm){
+    if (isConfirm){
+		swal("Deleted!", "Your file has been deleted!", "success");
+		deleteLectureAPI(lectureId);
+		return true;
+    } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+		return false;
+    }
+	});
+}
+
+function deleteLectureAPI(lectureId){
 	
 	var dId = document.getElementById("dId").value;	
 	

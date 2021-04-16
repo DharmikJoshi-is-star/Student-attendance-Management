@@ -57,8 +57,35 @@ function editFaculty(faculty){
 }
 
 function deleteFaculty(facultyId){
+
+	swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this Data!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Yes, delete it!',
+		cancelButtonText: "No, cancel plx!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
 	
-	
+	function(isConfirm){
+    if (isConfirm){
+		
+		swal("Deleted!", "Your file has been deleted!", "success");
+		deleteFacultyAPI(facultyId);
+		return true;
+    } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+		return false;
+    }
+	});
+
+}	
+
+function deleteFacultyAPI(facultyId){
+
 	var dId = document.getElementById("dId").value;	
 	
 	console.log("dId=", dId);
@@ -77,7 +104,7 @@ function deleteFaculty(facultyId){
 		.then((response)=> response)
 		.then((response)=>{
 			var a = document.createElement("a");
-			a.href = path+"/departmentDetails?dId="+dId;
+			a.href = path+"/departmentDashboard";
 			a.click();
 		})
 		.then((error)=>{
@@ -105,10 +132,19 @@ function postFaculty(faculty){
 		
 		})
 		.then((response)=> response.json())
-		.then((response)=>{
-			var a = document.createElement("a");
-			a.href = path+"/departmentDetails?dId="+dId;
-			a.click();
+		.then((facultyResponse)=>{
+			if(facultyResponse!=undefined || facultyResponse!=null){
+				
+				var facultyData = [facultyResponse];
+				populateFacultyTable(facultyData);
+				//var a = document.createElement("a");
+				//a.href = path+"/departmentDetails?dId="+dId;
+				//a.click();
+				success();
+			}else{
+				error();
+			}
+			
 		})
 		.then((error)=>{
 			console.log("Error: ",error);

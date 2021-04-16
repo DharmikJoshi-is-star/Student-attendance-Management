@@ -38,7 +38,7 @@ function populateAllClassesInTable(classes){
 	for(var index = 0; index < classes.length; index++){
 		
 		tableBody.appendChild( 
-			createRowForClassTable(index, classes[index])
+			createRowForClassTable(tableBody.childNodes.length-1, classes[index])
 			);
 	}
 	
@@ -150,10 +150,18 @@ function postClass(classObj){
 		
 		})
 		.then((response)=> response.json())
-		.then((response)=>{
-			var a = document.createElement("a");
-			a.href = path+"/classes?dId="+dId;
-			a.click();
+		.then((classResponse)=>{
+			if(classResponse!=undefined || classResponse!=null){
+				//var a = document.createElement("a");
+				//a.href = path+"/departmentClasses";
+				//a.click();
+				var classData = [classResponse];
+				populateAllClassesInTable(classData);
+				success();
+			}else{
+				error();
+			}
+			
 		})
 		.then((error)=>{
 			//console.log("Error: ",error);
@@ -191,6 +199,31 @@ function editClass(classObj){
 }
 
 function deleteClass(classId){
+	swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this Data!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Yes, delete it!',
+		cancelButtonText: "No, cancel plx!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	
+	function(isConfirm){
+    if (isConfirm){
+		swal("Deleted!", "Your file has been deleted!", "success");
+		deleteClassAPI(classId);
+		return true;
+    } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+		return false;
+    }
+	});
+}
+
+function deleteClassAPI(classId){
 	
 		
 	var dId = document.getElementById("dId").value;	

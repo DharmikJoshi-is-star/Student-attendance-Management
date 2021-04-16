@@ -10,8 +10,7 @@ function checkCredentials(){
 	if(username!="" && password!=""){
 		
 		verifyAdmin(username, password);
-		
-		
+	
 	}
 	else invalid();
 	
@@ -101,6 +100,7 @@ function verifyAdmin(username, password){
 		.then((response)=> response.json())
 		.then((adminId)=>{
 			if(adminId!=-1){
+				valid();
 				var a = document.createElement("a");
 				a.href = path+"/login-process-admin?adminId="+adminId;
 				a.click();
@@ -136,6 +136,7 @@ function verifyFaculty(username, password){
 		.then((response)=> response.json())
 		.then((facultyId)=>{
 			if(facultyId!=-1){
+				valid();
 				var a = document.createElement("a");
 				a.href = path+"/login-process-faculty?facultyId="+facultyId;
 				a.click();
@@ -151,9 +152,15 @@ function verifyFaculty(username, password){
 	return undefined;
 }
 
+function valid(){
+	document.getElementById("msg").innerHTML = "Successfully Login!!";
+	
+	document.getElementById("msg").style.color = "chartreuse";
+	
+}
 
 function invalid(){
 	document.getElementById("msg").innerHTML = "Invalid Credentials!!<br>Kindly check your username/password";
-		document.getElementById("msg").style.color = "red";
-		form['password'].value = "";
+	document.getElementById("msg").style.color = "red";
+	document.getElementById("loginform")['password'].value = "";
 }

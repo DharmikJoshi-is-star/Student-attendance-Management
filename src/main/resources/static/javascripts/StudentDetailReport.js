@@ -70,9 +70,14 @@ function prevPage(){
 function subjectDetailReport(sId, subId, currentPage, pageSize){
 	
 	var tableBody = document.getElementById("subjectAttendance");
-	
-	while(tableBody!=undefined && tableBody.hasChildNodes())
+	console.log("tableBody.hasChildNodes() ",tableBody.hasChildNodes());
+	console.log(tableBody);
+	console.log(tableBody.childNodes.length);
+	while(tableBody!=undefined && tableBody.hasChildNodes() && tableBody.childNodes.length>1){
+		console.log("tableBody.hasChildNodes() ",tableBody.hasChildNodes());
 		tableBody.remove();
+	}
+		
 	
 	console.log("getSubjectDetailedAttendance/"+sId+"/"+subId+"/"+currentPage+"/"+pageSize);
 	

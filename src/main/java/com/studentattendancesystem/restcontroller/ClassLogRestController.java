@@ -30,7 +30,7 @@ public class ClassLogRestController {
 		
 		System.out.println("tokenId="+ tokenId);
 		
-		//classLogService.setLogIn(deviceCode, tokenId);
+		classLogService.setLogIn(deviceCode, tokenId);
 		
 		return true;
 	}  
@@ -39,7 +39,7 @@ public class ClassLogRestController {
 	public Boolean setLogOut(@PathVariable("deviceCode") String deviceCode, 
 							@PathVariable("tokenId") String tokenId) {
 		
-		//classLogService.setLogOut(deviceCode, tokenId);
+		classLogService.setLogOut(deviceCode, tokenId);
 		System.out.println("Logout tokenId="+ tokenId);
 		return true;
 	}
