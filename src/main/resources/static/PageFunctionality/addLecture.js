@@ -1,4 +1,4 @@
-var path = "http://localhost:8080";
+//var path = "http://localhost:8080";
 
 subjects = [];
 faculties = [];
@@ -172,8 +172,7 @@ function createLectureForm(day){
 	lectureInput.type = "text";
 	lectureInput.id = "lectureNumber";
 	lectureInput.name = "lectureNumber";
-	lectureInput.min = 1;
-	lectureInput.max = 2;
+	lectureInput.pattern = "[0-9]{1,2}";
 	
 	lectureNumberControl.append(lectureInput);
 	

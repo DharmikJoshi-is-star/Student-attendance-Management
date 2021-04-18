@@ -1,4 +1,4 @@
-var path = "http://localhost:8080";
+//var path = "http://localhost:8080";
 
 var nfcAssigned = 0;
 var nfcUnassigned = 0;
@@ -101,6 +101,8 @@ function getAllRFIDsByPage(dId, currentPage, pageSize){
 }
 
 function getAllRFIDs(dId){
+	console.log("/rfid/getAllTokens/");
+	
 	fetch(path+"/rfid/getAllTokens/"+dId,{
 		method: 'GET',
 		headers: {
@@ -117,12 +119,15 @@ function getAllRFIDs(dId){
 				var rfid = rfids[index];
 			
 				if(rfid.student==null && rfid.faculty==null){
+					console.log(nfcUnassigned);
 					nfcUnassigned++;
 					
 				}else if(rfid.student!=null){
+					console.log(nfcAssigned);
 					nfcAssigned++;
 					
 				}else if(rfid.faculty!=null){
+					console.log(nfcAssigned);
 					nfcAssigned++;
 					
 				}

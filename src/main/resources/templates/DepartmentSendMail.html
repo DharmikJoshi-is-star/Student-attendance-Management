@@ -49,6 +49,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ <li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
   
@@ -156,7 +157,7 @@
 	              <div class="control-group">
 	                <label class="control-label">Enter Minimum Attendance :</label>
 	                <div class="controls">
-	                  <input type="number" name="minAttendance" class="span11" min="1" max="2" value="0" placeholder="ex. 75" />
+	                  <input type="number" name="minAttendance"  pattern="[0-9]{1,2}" class="span11" value="0" placeholder="ex. 75" />
 	                </div>
 	              </div>
 	              
@@ -268,7 +269,7 @@
 
 <input type="hidden" th:value="${departmentId}" id="dId">
 
-
+<script src="javascripts/path.js"></script> 
 <!-- 
 <script src="PageFunctionality/studentAverageAttendance.js"></script>
 <script src="PageFunctionality/sideMenuBar.js"></script> -->
@@ -285,6 +286,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <!-- to convert Table to PDF -->
 
+<script src="tutorial/tutorial.js"></script>
 
 <!--end-Footer-part-->
 <script src="js/jquery.min.js"></script> 

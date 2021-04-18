@@ -50,6 +50,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ <li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
 </div>
@@ -149,6 +150,7 @@
 <script src="PageFunctionality/filter.js"></script>
 <script src="chart/barchart.js"></script>
 <script src="javascripts/StudentMonthlyReport.js"></script> 
+<script src="javascripts/path.js"></script> 
 
 
 <input type="hidden" th:value="${studentId}" id="sId">
@@ -158,6 +160,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <!-- to convert Table to PDF -->
+<script src="tutorial/tutorial.js"></script>
 
 <!--end-Footer-part-->
 <script src="js/jquery.min.js"></script> 

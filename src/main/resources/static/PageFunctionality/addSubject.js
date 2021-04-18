@@ -1,4 +1,4 @@
-var path = "http://localhost:8080";
+//var path = "http://localhost:8080";
 
 function addSubject(){
 		
@@ -8,6 +8,8 @@ function addSubject(){
 	var name = subjectForm["name"].value;
 	
 	if(name!=undefined){
+		
+		document.getElementById("subjectNameError").classList.remove("error");
 		
 		if(id==-1){
 			var subject = {

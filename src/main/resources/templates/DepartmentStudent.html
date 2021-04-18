@@ -62,6 +62,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ <li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
   
@@ -107,14 +108,14 @@
 	              <div class="control-group">
 	                <label class="control-label">Name :</label>
 	                <div class="controls">
-	                  <input type="text" name="name" class="span11" placeholder="ex. Dharmik Jayesh Joshi" />
+	                  <input type="text" name="name"  pattern="[A-Za-z]{8,30}" class="span11" placeholder="ex. Dharmik Jayesh Joshi" />
 	                </div>
 	              </div>
 	              
 	              <div class="control-group">
 	                <label class="control-label">Roll no :</label>
 	                <div class="controls">
-	                  <input type="number" name="rollno" class="span11" placeholder="ex. 22" />
+	                  <input type="number" name="rollno" pattern="[0-9]{2,3}" class="span11" placeholder="ex. 22" />
 	                </div>
 	              </div>
 	              
@@ -239,7 +240,7 @@
 
 <input type="hidden" th:value="${departmentId}" id="dId">
 
-
+<script src="javascripts/path.js"></script> 
 <!-- <script src="PageFunctionality/showAllDepartmentStudents.js"></script> 
 <script src="PageFunctionality/sideMenuBar.js"></script>-->
 <script src="PageFunctionality/addStudent.js"></script>
@@ -253,6 +254,7 @@
 <!-- for alert -->
 <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
 
+<script src="tutorial/tutorial.js"></script>
 
 <!--end-Footer-part-->
 <script src="js/jquery.min.js"></script> 

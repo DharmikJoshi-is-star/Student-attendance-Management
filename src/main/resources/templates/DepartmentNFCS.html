@@ -51,6 +51,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ <li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
   
@@ -119,7 +120,7 @@
 	              <div class="control-group">
 	                <label class="control-label">Token value:</label>
 	                <div class="controls">
-	                  <input type="text" name="rfid" class="span11" placeholder="ex. bdvjkbfjkbvk" />
+	                  <input type="text" name="rfid" pattern="[A-Z0-9]{8}" class="span11" placeholder="ex. bdvjkbfjkbvk" />
 	                </div>
 	              </div>
 	              
@@ -217,9 +218,10 @@
 <input type="hidden" th:value="${currentPage}" id="currentPage">
 
 <!-- <script src="PageFunctionality/rfid.js"></script> -->
-
+<script src="javascripts/path.js"></script> 
 <script src="PageFunctionality/filter.js"></script>
 <script src="PageFunctionality/loader.js"></script>
+<script src="tutorial/tutorial.js"></script>
 
 
  <script src="javascripts/DepartmentNFCS.js"></script>

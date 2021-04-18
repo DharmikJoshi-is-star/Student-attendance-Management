@@ -47,6 +47,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ <li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
   
@@ -73,7 +74,7 @@
 
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Details Attendance of SPA</h5>
+            <h5>Details Attendance of <span id="subjectName"></span> </h5>
             
            	<div id="" align="right">
 			  <input type="text" id="search" style="width: 50%" placeholder="Search here..." oninput="filter('search', 'subjectDetailedReport')"/>
@@ -129,7 +130,7 @@
 <script src="PageFunctionality/studentDetailedAttendanceOfSubject.js"></script>
 <script src="PageFunctionality/loader.js"></script>
 <script src="PageFunctionality/filter.js"></script>
-
+<script src="javascripts/path.js"></script> 
 
 <input type="hidden" th:value="${studentId}" id="sId">
 <input type="hidden" th:value="${subjectId}" id="subId">
@@ -140,6 +141,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 <!-- to convert Table to PDF -->
 
+<script src="tutorial/tutorial.js"></script>
 
 
 <!--end-Footer-part-->

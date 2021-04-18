@@ -52,6 +52,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ 	<li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
   
@@ -168,7 +169,7 @@
 <!--Footer-part-->
 <div class="row-fluid">
 </div>
-
+<script src="javascripts/path.js"></script> 
 <!-- 
 <script src="PageFunctionality/findSubjectAttendanceByDay.js"></script> 
 <script src="PageFunctionality/sideMenuBar.js"></script> -->
@@ -186,6 +187,7 @@
 
 <input type="hidden" th:value="${departmentId}" id="departmentId">
 
+<script src="tutorial/tutorial.js"></script>
 
 <!--end-Footer-part--> 
 <script src="js/jquery.min.js"></script> 

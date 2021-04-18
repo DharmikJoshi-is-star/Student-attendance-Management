@@ -1,6 +1,6 @@
 //http://localhost:8080/lectureattendance/getStudentDetailedAttendanceOfSubject/44/7
 
-var path = "http://localhost:8080";
+//var path = "http://localhost:8080";
 
 function onLoadPopulate(){
 	

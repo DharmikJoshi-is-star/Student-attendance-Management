@@ -1,6 +1,6 @@
 //http://localhost:8080/lectureattendance/getStudentMonthlyReport/45
 
-var path = "http://localhost:8080";
+//var path = "http://localhost:8080";
 
 function onLoadPopulate(){
 	getAllStudentsMonthlyReportWithAPI();

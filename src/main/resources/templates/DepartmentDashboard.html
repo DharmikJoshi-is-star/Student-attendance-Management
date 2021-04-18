@@ -52,6 +52,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+    <li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
   
@@ -313,7 +314,10 @@
               <div class="control-group">
                 <label class="control-label">Name :</label>
                 <div class="controls">
-                  <input type="text" name="name" class="span11" placeholder="ex. SPA" />
+                  <input type="text" pattern="[A-Za-z0-9]{3,20}" name="name" class="span11" min="3" max="20" placeholder="ex. SPA" />
+                  <!-- <span style="color: red" hidden="true" class="help-inline" id="subjectNameError">Insert Correct value</span>
+                	-->
+            
                 </div>
               </div>
               
@@ -378,14 +382,14 @@
               <div class="control-group">
                 <label class="control-label">Username: </label>
                 <div class="controls">
-                  <input type="text" name="username" class="span11" />
+                  <input type="text" pattern="[A-Za-z0-9]{3,20}" name="username" class="span11" />
                 </div>
               </div>
               
               <div class="control-group">
                 <label class="control-label">Password :</label>
                 <div class="controls">
-                  <input type="text" name="password" class="span11" />
+                  <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password" class="span11" />
                 </div>
               </div>
               
@@ -421,14 +425,14 @@
               <div class="control-group">
                 <label class="control-label">Name :</label>
                 <div class="controls">
-                  <input type="text" name="name" class="span11" placeholder="ex. SPA" />
+                  <input type="text" pattern="[A-Za-z0-9]{3,20}" name="name" class="span11" placeholder="ex. SPA" />
                 </div>
               </div>
               
               <div class="control-group">
               	 <label class="control-label">Assigned Token :</label>
               	 <div class="controls">
-              	 	<label class="control-label" id="assignedToken"></label>
+              	 	<label class="control-label"  id="assignedToken"></label>
               	 </div>
               </div>
               
@@ -486,6 +490,7 @@
 
 <!-- <script src="PageFunctionality/departmentDetails.js"></script> 
  -->
+ <script src="javascripts/path.js"></script> 
 <script src="PageFunctionality/addFaculty.js"></script> 
 <script src="PageFunctionality/addSubject.js"></script> 
 <!-- <script src="PageFunctionality/sideMenuBar.js"></script> -->
@@ -497,10 +502,11 @@
 <script src="javascripts/DepartmentDashboard.js"></script> 
 <script src="javascripts/dialogbox.js"></script> 
 
+<script src="tutorial/tutorial.js"></script>
 
 <!-- for alert -->
 <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
-
+<script src="tutorial/tutorial.js"></script>
 
 <!--end-Footer-part--> 
 <script src="js/jquery.min.js"></script> 

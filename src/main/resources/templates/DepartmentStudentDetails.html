@@ -49,6 +49,7 @@
     <li><a href="departmentTimeTable"><i class="icon icon-calendar"></i> <span>Time Table</span></a> </li>
     <li><a href="departmentAttendance"><i class="icon icon-hand-right"></i> <span>Check Attendance</span></a> </li>
     <li><a href="departmentMail"><i class="icon icon-envelope-alt"></i> <span>Send Mails</span></a> </li>
+ <li><a href="#tutorial" data-toggle="modal" id="showTutorial"><i class="icon-question-sign"></i> <span>Help</span></a></li>
  
   </ul>
 </div>
@@ -325,8 +326,9 @@
 <script src="PageFunctionality/loader.js"></script>
 <script src="PageFunctionality/attendanceToPdf.js"></script>
 
-
+<script src="javascripts/path.js"></script> 
 <input type="hidden" th:value="${studentId}" id="sId">
+<script src="tutorial/tutorial.js"></script>
 
 <!--end-Footer-part--> 
 <script src="js/jquery.min.js"></script> 
