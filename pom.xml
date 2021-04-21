@@ -11,6 +11,7 @@
 	<groupId>com.studentattendancesystem</groupId>
 	<artifactId>Student-Attendance-System</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>Student-Attendance-System</name>
 	<description>Student Attendance System Project</description>
 	<properties>

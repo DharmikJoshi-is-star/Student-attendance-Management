@@ -53,7 +53,8 @@ function getDepartmentDetails(dId){
 	.then((res)=>res.json())
 	.then((departmentDetails)=>{
 		console.log("successfully fetched all data", departmentDetails);
-		if(departmentDetails){
+		if(departmentDetails!=null || departmentDetails!=undefined){
+			
 			setDepartmentDetails(departmentDetails);
 		}
 	})
@@ -150,6 +151,7 @@ function setDepartmentDetails(departmentDetails){
 	document.getElementById("deptName").innerHTML = departmentDetails.name;
 	
 	//document.getElementById("name").innerHTML = departmentDetails.name;
+
 	
 	document.getElementById("studentCount").innerHTML = departmentDetails.studentCount;
 	
@@ -166,6 +168,11 @@ function setDepartmentDetails(departmentDetails){
 	document.getElementById("nfcCount").innerHTML = departmentDetails.nfcCount;
 	
 	document.getElementById("classCount").innerHTML = departmentDetails.classCount;
+
+	
+
+
+
 	
 }
 

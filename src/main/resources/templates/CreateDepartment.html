@@ -13,10 +13,14 @@
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
+<link href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/dialogbox.css" />
+
+
 <link rel="stylesheet" href="css/loader.css" />
 
 </head>
-<body onload="onLoadPopulate()">
+<body >
 
 <!--Header-part-->
 <div >
@@ -80,7 +84,7 @@
             <h5>Department-info</h5>
           </div>
           <div class="widget-content nopadding">
-            <form action="#" id="departmentForm" method="get" class="form-horizontal">
+            <form action="javascript:void(0);" id="departmentForm" method="get" class="form-horizontal">
               <div class="control-group">
                 <label class="control-label">Name :</label>
                 <div class="controls">
@@ -92,7 +96,7 @@
           </div>
           
         </div>
-        <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" onsubmit="addDepartment()"> Add </a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+        <div class="modal-footer"> <a data-dismiss="modal" class="btn btn-primary" onclick="addDepartment()"> Add </a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
       </div>
       <!-- form Ends Here -->
     
@@ -109,9 +113,17 @@
 <div class="row-fluid">
   <div id="footer" class="span12">  </div>
 </div>
+
+<input type="hidden" th:value="${adminId}" id="adminId">
+
 <script src="javascripts/path.js"></script> 
-<script src="PageFunctionality/department.js"></script>
+<script src="javascripts/CreateDepartment.js"></script>
 <script src="PageFunctionality/loader.js"></script>
+
+<script src="javascripts/dialogbox.js"></script> 
+
+<!-- for alert -->
+<script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
 
 
 <!--end-Footer-part-->

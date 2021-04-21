@@ -17,4 +17,7 @@ public interface RFIDTokenRepository extends JpaRepository<RFIDToken, Long>{
 	@Query("select rfid from RFIDToken rfid where rfid.token_id=?1")
 	RFIDToken getRFIDTokenWithTokenId(String tokenId);
 
+	@Query("select rfid from RFIDToken rfid where rfid.department.id=?1")
+	List<RFIDToken> getRFIDTokenWithDepartmentId(Long dId);
+
 }

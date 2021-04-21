@@ -63,7 +63,7 @@ public class RFIDTokenService {
 
 	public List<RFIDToken> getAllTokens(Long dId) {
 		
-		List<RFIDToken> Tokens =  rfidTokenRepository.findAll();
+		List<RFIDToken> Tokens =  rfidTokenRepository.getRFIDTokenWithDepartmentId(dId);
 		
 		for(RFIDToken token: Tokens) {
 			token.setDepartment(null);

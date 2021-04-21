@@ -33,12 +33,12 @@ public class DepartmentRestController {
 	@Autowired
 	private DepartmentService departmentService;
 	
-	@PostMapping("/addDepartment")
-	public ResponseEntity<Department> saveDepartment(@RequestBody Department department, HttpSession session) {
-		Long adminId = (Long)session.getAttribute("adminId");
-		if(adminId==null)
+	@PostMapping("/addDepartment/{aId}")
+	public ResponseEntity<Department> saveDepartment(@RequestBody Department department, @PathVariable("aId") Long aId) {
+		
+		if(aId==null)
 			return null;
-		department = departmentService.saveDepartment(department, adminId);
+		department = departmentService.saveDepartment(department, aId);
 		return ResponseEntity.ok().body(department);
 	}
 	

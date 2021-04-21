@@ -130,7 +130,7 @@ public class DepartmentService {
 		
 		dfem.setClassCount( classService.getAllClasses(dId).size());
 		
-		if(department.getTodaysCompletedLectureCount()==0) {
+		if(department.getTodaysCompletedLectureCount()!=null && department.getTodaysCompletedLectureCount()==0) {
 			dfem.setCurrentLecture( null );
 		}else {
 			
@@ -149,21 +149,27 @@ public class DepartmentService {
 //					department.getTodaysCompletedLectureCount() - 1
 //					);
 			
-			dfem.setCurrentLecture( 
-					lecture.getSubject().getName() 
-					);
-			
-			dfem.setLectureInClass( 
-					lecture.getClassObj().getClassNo()
-					);
-			int count = 0;
-			for(Student student: department.getStudents()) {
-				if(student.getCurrentLog()!=null)
-				if(student.getCurrentLog().getClassObj().getClassNo().equals(lecture.getClassObj().getClassNo())) {
-					count++;
-				}
+			if(lecture!=null) {
+				dfem.setCurrentLecture( 
+						lecture.getSubject().getName() 
+						);
+				
+				dfem.setLectureInClass( 
+						lecture.getClassObj().getClassNo()
+						);
 			}
-			dfem.setStudentsPresentInLecture(count);
+			
+			int count = 0;
+			if(department.getStudents()!=null) {
+				for(Student student: department.getStudents()) {
+					if(student.getCurrentLog()!=null)
+					if(student.getCurrentLog().getClassObj().getClassNo().equals(lecture.getClassObj().getClassNo())) {
+						count++;
+					}
+				}
+				dfem.setStudentsPresentInLecture(count);
+			}
+			
 		}		
 		return dfem;
 	}
