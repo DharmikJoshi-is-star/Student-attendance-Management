@@ -16,6 +16,8 @@ public class Admin {
 	private String username;
 	
 	private String password;
+	
+	private String email;
 		
 	@OneToOne
 	private Department department;
@@ -50,6 +52,14 @@ public class Admin {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

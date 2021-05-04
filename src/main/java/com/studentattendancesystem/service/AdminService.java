@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.studentattendancesystem.model.Admin;
 import com.studentattendancesystem.repository.AdminRepository;
+import com.studentattendancesystem.service.mail.MailService;
 
 @Service
 public class AdminService {
 
 	@Autowired
 	private AdminRepository adminRepository;
+	
+	@Autowired
+	private MailService mailService;
 	
 	public Long verifyCredentials(Admin admin) {
 		admin = adminRepository.getAdminWithUsernameAndPassword(admin.getUsername(), admin.getPassword());
@@ -25,9 +29,26 @@ public class AdminService {
 	public Admin addAdmin(Admin admin) {
 		System.out.println(admin);
 		admin = this.saveAdmin(admin);
+		
+		String subject = "Welcome to Student Attendance Management";
+		String message = "Your Profile has been created on Student Attendance Management\n"
+						+"You Have Department Admin Level Access into Our system \n"
+						+"Click on this link: http://localhost:8080 \n"
+						+"Use Below Credentials to Log into Our System\n"
+						+"Username: "+admin.getUsername()+"\n"
+						+"Password: "+admin.getPassword()+"\n"
+						+"NOTE: DO NOT SHARE YOUR CREDENTIALS WITH ANYONE!!";
+		
+		
+		this.sendEmail(admin.getEmail(), subject, message);
+		
 		return admin;
 	}
 
+	public void sendEmail(String receiver, String subject, String message) {
+		mailService.sendMail(receiver, subject, message);
+	}
+	
 	public Admin saveAdmin(Admin admin) {
 		admin = adminRepository.save(admin);
 		return admin;
@@ -61,5 +82,15 @@ public class AdminService {
 		});
 		return admins;
 	}
+
+	public Boolean isSuperAdmin(Admin admin) {
+		
+		if(admin.getUsername().equals("superAdmin"))
+			if(admin.getPassword().equals("superAdmin"))
+				return true;
+				
+		return false;
+	}
 	
+
 }

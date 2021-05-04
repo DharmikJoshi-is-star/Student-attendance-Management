@@ -42,4 +42,12 @@ public class AdminRestController {
 		return adminService.getAllAdmins();
 	}
 	
+
+	@PostMapping("/isSuperAdmin")
+	public Boolean isSuperAdmin(@RequestBody Admin admin) {
+		
+		return adminService.isSuperAdmin(admin);
+	}
+	
+	
 }

@@ -52,14 +52,6 @@ function createRowAdminTable(srno, admin){
 	tdSrno.innerHTML = srno;
 	tr.appendChild(tdSrno);
 	
-	var tdUsername = document.createElement("td");
-	tdUsername.innerHTML = admin.username;
-	tr.appendChild(tdUsername);
-	
-	var tdPassword = document.createElement("td");
-	tdPassword.innerHTML = admin.password;
-	tr.appendChild(tdPassword);
-	
 	var tdDepartment = document.createElement("td");
 	
 	if(admin.department==undefined || admin.department=="" || admin.department==null)
@@ -69,6 +61,16 @@ function createRowAdminTable(srno, admin){
 		
 	tr.appendChild(tdDepartment);
 	
+	
+	var tdEmail = document.createElement("td");
+	if(admin.email!=null) tdEmail.innerHTML = admin.email;
+	else tdEmail.innerHTML = "test@gmail.com";
+	tr.appendChild(tdEmail);
+	
+	
+	var tdUsername = document.createElement("td");
+	tdUsername.innerHTML = admin.username;
+	tr.appendChild(tdUsername);
 	
 	var tdOpr = document.createElement("td");
 	
@@ -96,6 +98,8 @@ function addAdmin(){
 	
 	var username = adminForm["username"].value;
 	var password = adminForm["password"].value;
+	var email = adminForm["email"].value;
+	
 	
 	console.log(username);
 	
@@ -104,7 +108,8 @@ function addAdmin(){
 		
 		var admin = {
 			username: username,
-			password: password
+			password: password,
+			email: email
 		};
 		
 		saveAdmin(admin);

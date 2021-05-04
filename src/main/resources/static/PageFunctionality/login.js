@@ -9,7 +9,8 @@ function checkCredentials(){
 	
 	if(username!="" && password!=""){
 		
-		verifyAdmin(username, password);
+		isSuperAdmin(username,password);
+		
 	
 	}
 	else invalid();
@@ -163,4 +164,39 @@ function invalid(){
 	document.getElementById("msg").innerHTML = "Invalid Credentials!!<br>Kindly check your username/password";
 	document.getElementById("msg").style.color = "red";
 	document.getElementById("loginform")['password'].value = "";
+}
+
+function isSuperAdmin(username, password){
+	
+	var login = {
+		username: username,
+		password: password
+	};
+	
+	fetch(path+"/admin/isSuperAdmin/",{
+			
+		 method: "POST", 
+		 headers: {
+		      "Content-Type": "application/json",
+		    },
+		 body: JSON.stringify(login),
+		
+		})
+		.then((response)=> response.json())
+		.then((isSuperAdmin)=>{
+			if(isSuperAdmin){
+				valid();
+				var a = document.createElement("a");
+				a.href = path+"/superAdminProcess";
+				a.click();
+			}else{
+				verifyAdmin(username, password);
+			}
+			
+		})
+		.then((error)=>{
+			console.log("Error: ",error);
+		});
+		
+	return undefined;
 }

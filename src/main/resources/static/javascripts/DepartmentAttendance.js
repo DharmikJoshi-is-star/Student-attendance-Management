@@ -37,6 +37,7 @@ function populateSubjectIntoList(subjects){
 	
 	var selectSubject = document.getElementById("subjects");
 	
+	
 	for(var index = 0; index < subjects.length; index++){
 		
 		var subject = subjects[index];
@@ -72,6 +73,8 @@ function showAttendance(){
 function setAttendanceOfSubjectOnDate(subject){
 	
 	var tableHeadRow = document.getElementById("tableHeadRow");
+
+	
 	tableHeadRow.innerHTML = "";
 	
 	fetch(path+"/lectureattendance/getAttendnaceOfSubjectOnDate/"+subject.id+"/"+subject.date,{
@@ -108,7 +111,7 @@ function populateAttendanceTable(attendances){
 	tableHeadRow.appendChild(rollNo);
 	
 	var studentName = document.createElement("th");
-	studentName.innerHTML = "Studnet Name";
+	studentName.innerHTML = "Student Name";
 	tableHeadRow.appendChild(studentName);
 	
 	if( attendances.length!=0 ){
@@ -125,6 +128,8 @@ function populateAttendanceTable(attendances){
 	}
 	
 	var tableBody = document.getElementById("attendance");
+	
+	tableBody.innerHTML = "";
 	
 	for(var index = 0; index < attendances.length; index++){
 		console.log(attendances[index]);
