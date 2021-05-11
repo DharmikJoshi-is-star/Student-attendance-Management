@@ -9,7 +9,7 @@ function addSubject(){
 	
 	if(name!=undefined){
 		
-		document.getElementById("subjectNameError").classList.remove("error");
+		//document.getElementById("subjectNameError").classList.remove("error");
 		
 		if(id==-1){
 			var subject = {

@@ -48,7 +48,7 @@ function populateAllStudentInTable(students){
 	for(var index = 0; index < students.length; index++){
 		
 		tableBody.appendChild( 
-			createRowForStudentTable(tableBody.childNodes.length, students[index])
+			createRowForStudentTable(index, students[index])
 			);
 	}
 
@@ -56,13 +56,13 @@ function populateAllStudentInTable(students){
 
 function createRowForStudentTable(index, student){
 	var tr = document.createElement("tr");
-	tr.classList.add("gradeX");
-	if(index%2==1){
-		tr.classList.add("odd");
-	}else tr.classList.add("even");
+	//tr.classList.add("gradeX");
+	//if(index%2==1){
+	//	tr.classList.add("odd");
+	//}else tr.classList.add("even");
 	
 	var tdSrNo = document.createElement("td");
-	tdSrNo.classList.add("sorting_1");
+	//tdSrNo.classList.add("sorting_1");
 	tdSrNo.innerHTML = index+1;
 	tr.appendChild(tdSrNo);
 	
