@@ -91,7 +91,7 @@ function postStudentInfo(studentInfo){
 		.then((response)=> response.json())
 		.then((response)=>{
 			var a = document.createElement("a");
-			a.href = path+"/showStudentDetails?sId="+sId; 
+			a.href = path+"/departmentStudentDetails"; 
 			a.click();
 		})
 		.then((error)=>{
