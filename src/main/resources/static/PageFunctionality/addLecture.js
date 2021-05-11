@@ -447,7 +447,7 @@ function saveLecture(dId, lecture, classId, departmentId, facultyId, subjectId )
 		.then((response)=> response.json())
 		.then((response)=>{
 			var a = document.createElement("a");
-			a.href = path+"/timeTableDepartment?dId="+dId;
+			a.href = path+"/departmentTimeTable";
 			a.click();
 		})
 		.then((error)=>{

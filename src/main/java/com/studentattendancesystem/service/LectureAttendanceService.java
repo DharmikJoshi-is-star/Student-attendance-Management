@@ -86,6 +86,10 @@ public class LectureAttendanceService {
 					);
 		Department department = presentStudents.get(0).getDepartment();
 		List<Lecture> lectures = lectureService.getAllLecturesOfDayWithDepartmentId(department.getId(), day);
+		  
+		if(department.getTodaysCompletedLectureCount() == null)
+			department.setTodaysCompletedLectureCount(0);
+		
 		Lecture lecture = lectures.get( department.getTodaysCompletedLectureCount() );
 	
 		mafef.setFacultyName(faculty.getName());
@@ -112,6 +116,8 @@ public class LectureAttendanceService {
 	 * 
 	 */
 	public List<MarkAttendanceFronEndStudent> markTodaysAttendance(Long fId) {
+		
+		System.out.println("Mark Todays Attendance is called!!");
 		
 		List<MarkAttendanceFronEndStudent> listOfAllStudentsWithMarkAttendance = new ArrayList<>();
 		

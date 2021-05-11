@@ -46,6 +46,7 @@ function populateFacultyDetails(faculty){
 function onMarkAttendanceClick(){
 	var fId = document.getElementById("fId").value;
 	if(fId!=undefined){
+		console.log(fId, "available");
 	callMarkAttendanceAPI(fId);
 	}
 }
@@ -54,8 +55,7 @@ function callMarkAttendanceAPI(fId){
 	
 	var tableBody = document.getElementById("attendance");
 	
-	while(tableBody.hasChildNodes)
-		tableBody.remove();
+	tableBody.innerHTML = "";
 	
 	fetch(path+"/lectureattendance/markAttendance/"+fId,{
 		method: 'GET',
