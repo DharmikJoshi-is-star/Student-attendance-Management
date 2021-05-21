@@ -33,7 +33,7 @@ public class AdminRestController {
 	}
 	
 	@DeleteMapping("/deleteAdmin/{adminId}")
-	public Boolean deleteAdmin(@PathVariable("/adminId") Long adminId) {
+	public Boolean deleteAdmin(@PathVariable("adminId") Long adminId) {
 		return adminService.deleteAdmin(adminId);
 	}
 

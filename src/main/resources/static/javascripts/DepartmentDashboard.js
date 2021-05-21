@@ -15,6 +15,8 @@ function onLoadPopulate(){
 		getAllNonAssignedRFIDs(dId, "rfids");
 		
 		getOneWeekData(dId);
+		
+		getAllBufferAttendanceCount(dId);
 	}
 	
 }
@@ -449,4 +451,93 @@ function populateCredentialForm(faculty){
 
 	credentialForm["username"].value = faculty.login.username;
 	credentialForm["password"].value = faculty.login.password;
+}
+
+
+function clearBufferAttendance(){
+	
+	swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this Data!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Yes, delete it!',
+		cancelButtonText: "No, cancel plx!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	
+	function(isConfirm){
+	    if (isConfirm){
+			clearAllBufferAttendance();
+			
+			//deleteSubjectAPI(sId);
+			return true;
+	    } else {
+	      swal("Cancelled", "Your Buffer Data is is safe :)", "error");
+		  return false;
+	    }
+	});
+	
+	//success();
+	//error();
+}
+
+function clearAllBufferAttendance(){
+	
+	var dId = document.getElementById("dId").value;	
+	
+	if(dId!=undefined){
+		fetch(path+"/lectureattendance/deleteAllBufferedAttendance/"+dId,{
+			method: 'DELETE',
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+		.then((res)=>res.json())
+		.then((res)=>{
+			console.log("Successfully deleted?", res);
+			if(res==true){
+				
+				getAllBufferAttendanceCount(dId);
+				swal("Deleted!", "Buffer Data has been deleted!", "success");
+				/*
+				document.getElementById("bufferLabel").classList.add("label");
+				document.getElementById("bufferLabel").classList.add("label-success");
+				document.getElementById("bufferLabel").innerHTML = "Deleted Successfully!";
+				*/
+			}
+			
+		})
+		.then((err)=>{
+			//console.log(err);
+			return;
+		});
+	}
+}
+
+function getAllBufferAttendanceCount(dId){
+	
+	if(dId!=undefined){
+		fetch(path+"/lectureattendance/getCountOfAllBufferedAttendance/"+dId,{
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+		.then((res)=>res.json())
+		.then((res)=>{
+			console.log("-----------------------");
+			console.log("Successfully count data", res);
+			if(res!=undefined){
+				document.getElementById("bufferAttendance").innerHTML = res;
+			}
+			
+		})
+		.then((err)=>{
+			//console.log(err);
+			return;
+		});
+	}
 }

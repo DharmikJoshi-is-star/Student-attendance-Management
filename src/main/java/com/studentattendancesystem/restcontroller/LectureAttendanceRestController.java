@@ -49,6 +49,11 @@ public class LectureAttendanceRestController {
 		return true;
 	}
 
+	@GetMapping("/getCountOfAllBufferedAttendance/{dId}")
+	public Integer getCountOfAllBufferedAttendance(@PathVariable("dId") Long dId) {
+		return lectureAttendanceService.getCountOfAllBufferedAttendance(dId);
+	}
+	
 	@DeleteMapping("/deleteBufferedAttendanceOfStudent/{attId}")
 	public Boolean deleteBufferedAttendanceOfStudent(@PathVariable("attId") Long attendanceId) {
 		lectureAttendanceService.deleteBufferAttendance(attendanceId);

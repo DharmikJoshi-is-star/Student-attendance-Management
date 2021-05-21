@@ -80,9 +80,13 @@ function createRowAdminTable(srno, admin){
 	tdDelete.classList.add("btn-small");
 	tdDelete.innerHTML = "Delete";
 	tdDelete.addEventListener("click", ()=>{
-		console.log("DELETE FACULTY ");
-		deleteFaculty(admin.id);
+		//console.log("DELETE FACULTY ");
+		deleteAdmin(admin);
 	});
+	if(admin.department!=null)
+		tdDelete.disabled = true;
+	
+	
 	
 	tdOpr.appendChild(tdDelete);
 	
@@ -137,5 +141,63 @@ function saveAdmin(admin){
 		.then((error)=>{
 			console.log("Error: ",error);
 		});
+	
+}
+
+function deleteAdmin(admin){
+	swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this Data!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: '#DD6B55',
+		confirmButtonText: 'Yes, delete it!',
+		cancelButtonText: "No, cancel plx!",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	
+	function(isConfirm){
+    if (isConfirm){
+		swal("Deleted!", "Your file has been deleted!", "success");
+		console.log(admin);
+		console.log(admin.id);
+		deleteAdminAPI(admin.id);
+		return true;
+    } else {
+      swal("Cancelled", "Your imaginary file is safe :)", "error");
+		return false;
+    }
+	});
+} 
+
+
+
+function deleteAdminAPI(adminId){
+	
+	console.log(adminId);
+	
+	if(adminId!=undefined){
+		
+		fetch(path+"/admin/deleteAdmin/"+adminId,{
+			
+		 method: "DELETE", 
+		 headers: {
+		      "Content-Type": "application/json",
+		    },
+		})
+		.then((response)=> response)
+		.then((response)=>{
+			
+			var a = document.createElement("a");
+			a.href = path+"/superAdmin";
+			a.click();
+			
+		})
+		.then((error)=>{
+			console.log("Error: ",error);
+		});
+		
+	}
 	
 }

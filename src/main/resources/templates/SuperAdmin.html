@@ -12,23 +12,53 @@
 <link rel="stylesheet" href="css/matrix-media.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" href="css/loader.css" />
+
+
 
 </head>
 <body onload="onLoadPopulate()">
 
+<!--Header-part-->
+<div >
+  <h1 id="header" style="background-image: url('img/logo.png'); background-repeat: no-repeat"><a href="departmentDashboard" ></a></h1>
+</div>
+<!--close-Header-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Super Admin</span></a>
+      
+    </li>
+    
+    <li class=""><a title="" href="/"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+  </ul>
+</div>
 
 
 
 <div id="content">
-
-  <div id="content-header">
-    <h1></h1>
+<!--  -->
+  <div align="center" id="content-header">
+  	
   </div>
   
   <div class="container-fluid">
-
+  <div align="center">
+  <br>
+	 <p class="alert alert-error">
+	 	<b> !!Welcome Super Admin!! </b>
+	 	<br>
+	 	You can Create a Department Level Admin by filling out the registeration form..
+	 	These details will be forwarded to department admin via email..
+	 	<br>
+	 	You may delete Admin if has no department
+	 </p>
+	 
+   </div>
     <div class="row-fluid">
       <div class="span12">
 
@@ -115,7 +145,7 @@
   </div>
 
 </div>
-
+<script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
 <script src="PageFunctionality/SuperAdmin.js"></script> 
 <script src="javascripts/path.js"></script> 
 <!--end-Footer-part-->

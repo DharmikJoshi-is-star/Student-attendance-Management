@@ -997,5 +997,13 @@ public class LectureAttendanceService {
         else
         	return attendanceList.subList(start, attendanceList.size());
 	}
+
+
+	public int getCountOfAllBufferedAttendance(Long dId) {
+
+		List<LectureAttendance> bufferList = attendanceRepository.getAllTheBufferedAttendance(dId);
+
+		return bufferList.size();
+	}
 	
 }
