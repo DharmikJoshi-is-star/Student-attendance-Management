@@ -2,7 +2,7 @@
 
 Attendance and Information System using NFC and Web-Based Application for Academic Sector.
 This webapp will help to take attendance of students using NFC Tag.
-An Arduino circuit interated with NFC readers is connected with internet. That will read and send tag data to webapp via rest ends. 
+An Arduino circuit integrated with NFC readers is connected with internet. That will read and send tag data to webapp via rest ends. 
 Application creates logs of students and create attendance for scheduled Lectures.
 <ul>
 Class admin, 
